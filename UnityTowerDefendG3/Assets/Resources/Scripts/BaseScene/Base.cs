@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Base : MonoBehaviour
 {
     public float totalHeath = 100f;
-    private float currentHeath = 0;
+    public float currentHeath ;
 
     public Slider heathSlider;
     public Text currentHeathText;

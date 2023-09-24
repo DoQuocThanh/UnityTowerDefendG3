@@ -10,16 +10,18 @@ public class EnemySpanwer : MonoBehaviour
     public float timePerSpawn;
     private float spawnCounter;
     public int totalSpawn = 10;
+    private Base theBase;
     // Start is called before the first frame update
     void Start()
     {
         spawnCounter = timePerSpawn;
+        theBase = FindObjectOfType<Base>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (totalSpawn > 0)
+        if (totalSpawn > 0 && theBase.currentHeath > 0)
         {
             spawnCounter -= Time.deltaTime;
             if (spawnCounter <= 0)

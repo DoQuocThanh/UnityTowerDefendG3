@@ -23,24 +23,28 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (reachedEnd == false)
+        if (theBase.currentHeath > 0)
         {
-            //transform.LookAt(thePath.points[currentPoint].position);
-            transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                moveSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
+
+            if (reachedEnd == false)
             {
-                currentPoint = currentPoint + 1;
-                if (currentPoint >= thePath.points.Length)
+                //transform.LookAt(thePath.points[currentPoint].position);
+                transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
+                    moveSpeed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
                 {
-                    reachedEnd = true;
+                    currentPoint = currentPoint + 1;
+                    if (currentPoint >= thePath.points.Length)
+                    {
+                        reachedEnd = true;
+                    }
                 }
             }
-        }
-        else
-        {
-            theBase.takeDamage(enemyHeath);
-            gameObject.SetActive(false);
+            else
+            {
+                theBase.takeDamage(enemyHeath);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -768,8 +768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 3657329816060591666, guid: 372e9077a185cfe44b6039280e347655, type: 3}
   spawnPoint: {fileID: 700699719}
-  timePerSpawn: 2
-  totalSpawn: 10
+  timePerSpawn: 1
+  totalSpawn: 20
 --- !u!1 &1493000249
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHeath: 100
+  currentHeath: 0
   heathSlider: {fileID: 534363518}
   currentHeathText: {fileID: 371570116}
 --- !u!1 &1794056813
