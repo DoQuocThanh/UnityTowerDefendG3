@@ -1,7 +1,9 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
@@ -10,10 +12,16 @@ public class EnemyController : MonoBehaviour
     private Path thePath;
     private int currentPoint;
     private bool reachedEnd;
-
+    public Animator animator;
+    private Vector2 input;
     public float enemyHeath;
     private Base theBase;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Start()
     {
         thePath = FindObjectOfType<Path>();
@@ -25,8 +33,18 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase.currentHeath > 0)
         {
+<<<<<<< HEAD
 
             if (reachedEnd == false)
+=======
+            //transform.LookAt(thePath.points[currentPoint].position);
+            transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
+                moveSpeed * Time.deltaTime);
+            input = (thePath.points[currentPoint].position - transform.position).normalized;
+            animator.SetFloat("moveX", input.x);
+            animator.SetFloat("moveY", input.y);
+            if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
+>>>>>>> 18a7256f6f0d3405cb2a415b54cc6744bbf061cc
             {
                 //transform.LookAt(thePath.points[currentPoint].position);
                 transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
