@@ -33,38 +33,43 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase.currentHeath > 0)
         {
-<<<<<<< HEAD
+
 
             if (reachedEnd == false)
-=======
-            //transform.LookAt(thePath.points[currentPoint].position);
-            transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                moveSpeed * Time.deltaTime);
-            //animation of move
-            input = (thePath.points[currentPoint].position - transform.position).normalized;
-            animator.SetFloat("moveX", input.x);
-            animator.SetFloat("moveY", input.y);
-
-            if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
->>>>>>> 18a7256f6f0d3405cb2a415b54cc6744bbf061cc
             {
-                //transform.LookAt(thePath.points[currentPoint].position);
+
                 transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                    moveSpeed * Time.deltaTime);
+                moveSpeed * Time.deltaTime);
+                //animation of move
+                input = (thePath.points[currentPoint].position - transform.position).normalized;
+                Debug.Log(moveSpeed * Time.deltaTime);
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
                 if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
+
                 {
-                    currentPoint = currentPoint + 1;
-                    if (currentPoint >= thePath.points.Length)
+                    transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
+                        moveSpeed * Time.deltaTime);
+                    if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
                     {
-                        reachedEnd = true;
+                        currentPoint = currentPoint + 1;
+                        if (currentPoint >= thePath.points.Length)
+                        {
+                            reachedEnd = true;
+                        }
                     }
                 }
+
             }
             else
             {
                 theBase.takeDamage(enemyHeath);
                 gameObject.SetActive(false);
             }
+
+
+
+
         }
     }
 }
