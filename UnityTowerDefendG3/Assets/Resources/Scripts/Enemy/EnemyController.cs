@@ -33,8 +33,6 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase.currentHeath > 0)
         {
-
-
             if (reachedEnd == false)
             {
 
@@ -66,10 +64,6 @@ public class EnemyController : MonoBehaviour
                 theBase.takeDamage(enemyHeath);
                 gameObject.SetActive(false);
             }
-
-
-
-
         }
     }
 }
