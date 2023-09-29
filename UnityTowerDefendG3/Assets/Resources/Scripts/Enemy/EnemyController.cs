@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Bson;
+﻿using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     {
         thePath = FindObjectOfType<Path>();
         theBase = FindObjectOfType<Base>();
+        this.tag = "Enemy";
     }
 
     // Update is called once per frame
