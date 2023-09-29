@@ -13,7 +13,6 @@ public class LevelSelection : MonoBehaviour
     {
         UpdateLevelStatus();
         UpdateLevelImage();
-
         //PlayerPrefs.DeleteAll();
     }
 
