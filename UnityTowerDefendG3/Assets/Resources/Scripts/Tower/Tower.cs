@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour
     public float range = 3f;
     public float firerate = .2f;
     private float checkCounter;
-    public float bps = 1f;
+    public float bps = 1f;//bullet per second
 
     [Header("References")]
     public Transform turretRotationPoint;
@@ -32,9 +32,9 @@ public class Tower : MonoBehaviour
     }
     void Update()
     {
-       if (target == null) {
+        if (target == null) {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range,
-                transform.position, 0f,enemyMask);   
+                (Vector2)transform.position, 0f,enemyMask);   
             if (hits.Length > 0)
             {
                 target = hits[0].transform;
