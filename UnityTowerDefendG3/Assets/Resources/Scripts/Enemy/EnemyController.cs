@@ -33,8 +33,6 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase.currentHeath > 0)
         {
-
-
             if (reachedEnd == false)
             {
 
@@ -42,9 +40,9 @@ public class EnemyController : MonoBehaviour
                 moveSpeed * Time.deltaTime);
                 //animation of move
                 input = (thePath.points[currentPoint].position - transform.position).normalized;
-                Debug.Log(moveSpeed * Time.deltaTime);
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
+
                 if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
 
                 {
@@ -66,10 +64,6 @@ public class EnemyController : MonoBehaviour
                 theBase.takeDamage(enemyHeath);
                 gameObject.SetActive(false);
             }
-
-
-
-
         }
     }
 }
