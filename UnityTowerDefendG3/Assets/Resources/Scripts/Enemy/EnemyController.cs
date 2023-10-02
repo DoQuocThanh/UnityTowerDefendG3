@@ -66,4 +66,13 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+    public void takedamage(float damage)
+    {
+        enemyHeath -= damage;
+        if (enemyHeath <= 0)
+        {
+            enemyHeath = 0;
+            Destroy(gameObject);
+        }
+    }
 }
