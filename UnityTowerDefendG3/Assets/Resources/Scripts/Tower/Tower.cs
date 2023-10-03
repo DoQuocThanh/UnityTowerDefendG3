@@ -11,10 +11,8 @@ public class Tower : MonoBehaviour
     public float range = 3f;
     public float firerate = .2f;
     private float checkCounter;
-    public float bps = 1f;//bullet per second
 
     [Header("References")]
-    public Transform turretRotationPoint;
     public LayerMask enemyMask;
     private bool _gameStarted;
     public GameObject bulletPrefab;
@@ -22,7 +20,6 @@ public class Tower : MonoBehaviour
 
 
     private Transform target;
-    private float timeUntilFire;
     void Start()
     {
         _gameStarted = true;
@@ -65,75 +62,14 @@ public class Tower : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
-        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x -
-        transform.position.x) * Mathf.Rad2Deg - 90f;
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        turretRotationPoint.rotation = targetRotation;
+        float angle = Vector3.SignedAngle(transform.up, target.transform.position - transform.position, transform.forward);
+        transform.Rotate(0f, 0f, angle);
     }
 
     private void OnDrawGizmos()
     {
         if (!_gameStarted)
-        {
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(transform.position, transform.forward,range);
-        }
+            Gizmos.DrawWireSphere(transform.position, range);
     }
 
-  /*  public float fireRate = 2f;
-    public float damage = 100f;
-    private Collider2D[] colliderInRange;
-    public List<EnemyController> enemiesInRange;
-  */
-
-    /* private void GetCurrentEnemyTarget()
-     {
-
-
-         if (enemiesInRange.Count<=0)
-         {
-             CurrentEnemyTarget = null;
-         }
-         else
-         {
-             CurrentEnemyTarget = enemiesInRange[0];
-
-         }
-
-     }
-
-     private void OnTriggerEnter2D(Collider2D other)
-     {
-         if (other.CompareTag("Enemy"))
-         {
-             checkCounter -= Time.deltaTime;
-             if (checkCounter <= 0)
-             {
-                 checkCounter = checkTime;
-                 colliderInRange = Physics2D.OverlapCircleAll(transform.position, range);
-                 enemiesInRange.Clear();
-                 foreach (Collider2D item in colliderInRange)
-                 {
-                     enemiesInRange.Add(item.GetComponent<EnemyController>());
-                 }
-             }
-         }
-     }
-     private void RotateTowardsTarget()
-     {
-         if (CurrentEnemyTarget != null)
-         {
-             Vector3 targetPos = CurrentEnemyTarget.transform.position - transform.position;
-             float angle = Vector3.SignedAngle(transform.up, targetPos, transform.forward);
-             transform.Rotate(0f, 0f, angle);
-             bullet.transform.position = Vector2.MoveTowards(bullet.transform.position, CurrentEnemyTarget.transform.position,
-                fireRate * Time.deltaTime);
-             CurrentEnemyTarget.enemyHeath = damage - CurrentEnemyTarget.enemyHeath;
-             if (CurrentEnemyTarget.enemyHeath <=0)
-             {
-                 Destroy(CurrentEnemyTarget);
-             }
-         }
-         else return;
-     }*/
 }
