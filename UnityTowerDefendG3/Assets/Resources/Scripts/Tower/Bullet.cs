@@ -5,12 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("References")]
-    public Rigidbody2D rb;
     [Header("Attributes")]
-    public float firerateBullet = 5f;
+    public float firerateBullet = 1f;
     public float bulletDamage;
-    private Transform target;
-    public void SetTarget(Transform _target)
+    private EnemyController target;
+    public void SetTarget(EnemyController _target)
     {
         target = _target;
     }
@@ -18,16 +17,27 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         if (!target) return;
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * firerateBullet;
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position,
+            firerateBullet * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, target.transform.position) < 0.01f)
+        {
+            gameObject.SetActive(false);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy")
         {
+            Debug.Log("cc");
             other.gameObject.GetComponent<EnemyController>().takedamage(bulletDamage);
         }
         Destroy(gameObject);
     }
-   
+
+   /* private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }*/
+
 }

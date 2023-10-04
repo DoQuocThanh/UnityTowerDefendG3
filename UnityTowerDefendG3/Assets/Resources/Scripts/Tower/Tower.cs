@@ -4,78 +4,109 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
+public enum Target
+{
+    WeakestEnememies,
+    StrongestEnememies,
+    First,
+    Last
+}
 public class Tower : MonoBehaviour
 {
+    [Header("Target Selection")]
+    public Target target;
+
     [Header("Attribute")]
-    public float range = 3f;
     public float firerate = .2f;
     private float checkCounter;
 
     [Header("References")]
-    public LayerMask enemyMask;
-    private bool _gameStarted;
     public GameObject bulletPrefab;
     public Transform firingPoint;
-
-    private Transform target;
+    private List<EnemyController> eList = new List<EnemyController>();
+    public EnemyController enemyController { get; set; }
 
     void Start()
     {
-        _gameStarted = true;
 
         checkCounter = firerate;
 
     }
-    void Update()
+    private void Update()
     {
-        if (target == null)
-        {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range,
-                (Vector2)transform.position, 0f, enemyMask);
-            if (hits.Length > 0)
-            {
-                target = hits[0].transform;
-            }
-            return;
-        }
+        SelectionTarget();
         RotateTowardsTarget();
-
-
-        if (Vector2.Distance(target.position, transform.position) > range)
+        Shoot();
+    }
+    private void SelectionTarget()
+    {
+        switch (target)
         {
-            target = null;
+            case Target.First:
+                if (eList.Count > 0)
+                {
+                    enemyController = eList[0];
+                }
+                break;
+            case Target.Last:
+                if (eList.Count > 0)
+                {
+                    enemyController = eList[eList.Count - 1];
+                }
+                break;
         }
-        else
+    }
+    private void OnTriggerEnter2D(Collider2D objec)
+    {
+        if (objec.tag == "Enemy")
         {
-            checkCounter -= Time.deltaTime;
-            if (checkCounter <= 0)
+            EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
+            if (enemy != null)
             {
-                checkCounter = firerate;
-                Shoot();
+                eList.Add(enemy);
             }
         }
-
     }
-
-    private void Shoot()
+    private void OnTriggerExit2D(Collider2D objec)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.SetTarget(target);
+        if (objec.tag == "Enemy")
+        {
+            EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
+            if (eList.Contains(enemy))
+            {
+                eList.Remove(enemy);
+            }
+        }
     }
-
     private void RotateTowardsTarget()
     {
-        float angle = Vector3.SignedAngle(transform.up, target.transform.position - transform.position, transform.forward);
+        if (enemyController == null) return;
+        float angle = Vector3.SignedAngle(transform.up, enemyController.transform.position - transform.position, transform.forward);
         transform.Rotate(0f, 0f, angle);
     }
-
-    private void OnDrawGizmos()
+    private void Shoot()
     {
-        if (!_gameStarted)
-            Gizmos.DrawWireSphere(transform.position, range);
+
+        checkCounter -= Time.deltaTime;
+        if (checkCounter <= 0)
+        {
+            checkCounter = firerate;
+            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.SetTarget(enemyController);
+        }
+
     }
 
-   
+    
+
+    /* private void OnDrawGizmos()
+     {
+         if (!_gameStarted)
+             Gizmos.DrawWireSphere(transform.position, range);
+     }*/
+
+
 }

@@ -14,12 +14,11 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     public float enemyHeath;
 
-   
+
     [Header("References")]
     public Animator animator;
     public Slider enemyHeathSlider;
-    public TextMeshProUGUI enemyHeathText;
-    
+
 
     private Path thePath;
     private int currentPoint;
@@ -44,29 +43,21 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase.currentHeath > 0)
         {
-            if (reachedEnd == false)
-            {
+            transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
+            moveSpeed * Time.deltaTime);
+            //animation of move
+            input = (thePath.points[currentPoint].position - transform.position).normalized;
+            animator.SetFloat("moveX", input.x);
+            animator.SetFloat("moveY", input.y);
 
-                transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                moveSpeed * Time.deltaTime);
-                //animation of move
-                input = (thePath.points[currentPoint].position - transform.position).normalized;
-                animator.SetFloat("moveX", input.x);
-                animator.SetFloat("moveY", input.y);
-              
-                    if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
-                    {
-                        currentPoint = currentPoint + 1;
-                        if (currentPoint >= thePath.points.Length)
-                        {
-                            reachedEnd = true;
-                        }
-                    }
-            }
-            else
+            if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
             {
-                theBase.takeDamage(enemyHeath);
-                gameObject.SetActive(false);
+                currentPoint = currentPoint + 1;
+                if (currentPoint >= thePath.points.Length)
+                {
+                    theBase.takeDamage(enemyHeath);
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -80,6 +71,5 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
         enemyHeathSlider.value = enemyHeath;
-        enemyHeathText.text = "-" + sum.ToString();
     }
 }
