@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -38,7 +39,9 @@ public class Tower : MonoBehaviour
     {
         SelectionTarget();
         RotateTowardsTarget();
-        Shoot();
+        if (enemyController != null) {
+            Shoot();
+        }
     }
     private void SelectionTarget()
     {
@@ -93,7 +96,7 @@ public class Tower : MonoBehaviour
         if (checkCounter <= 0)
         {
             checkCounter = firerate;
-            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.SetTarget(enemyController);
         }

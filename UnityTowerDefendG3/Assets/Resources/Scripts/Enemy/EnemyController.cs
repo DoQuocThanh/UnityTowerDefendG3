@@ -25,7 +25,6 @@ public class EnemyController : MonoBehaviour
     private bool reachedEnd;
     private Vector2 input;
     private Base theBase;
-    private float sum = 0f;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -63,13 +62,15 @@ public class EnemyController : MonoBehaviour
     }
     public void takedamage(float damage)
     {
-        sum += damage;
-        enemyHeath -= damage;
-        if (enemyHeath <= 0)
+        enemyHeath = Mathf.Clamp(enemyHeath - damage, 0, enemyHeathSlider.maxValue);
+        if (enemyHeath > 0)
         {
-            enemyHeath = 0;
+            enemyHeathSlider.value = enemyHeath;
+        }
+        else
+        {
             Destroy(gameObject);
         }
-        enemyHeathSlider.value = enemyHeath;
+        
     }
 }

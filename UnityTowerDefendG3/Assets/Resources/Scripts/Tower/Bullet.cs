@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Bullet : MonoBehaviour
 {
     [Header("References")]
+   
     [Header("Attributes")]
     public float firerateBullet = 1f;
     public float bulletDamage;
@@ -16,14 +18,10 @@ public class Bullet : MonoBehaviour
     //FixedUpdate is call once per 0.02s(xu li vat li) 
     private void FixedUpdate()
     {
-        if (!target) return;
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position,
-            firerateBullet * Time.deltaTime);
-
-        if (Vector2.Distance(transform.position, target.transform.position) < 0.01f)
-        {
-            gameObject.SetActive(false);
-        }
+        if (target == null) return;
+        transform.position = Vector2.MoveTowards(transform.position,target.transform.position,
+           firerateBullet * Time.deltaTime);
+        
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
