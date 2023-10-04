@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -13,19 +14,19 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     public float enemyHeath;
 
+   
     [Header("References")]
     public Animator animator;
     public Slider enemyHeathSlider;
     public TextMeshProUGUI enemyHeathText;
+    
 
-    private Vector2 input;
     private Path thePath;
     private int currentPoint;
     private bool reachedEnd;
+    private Vector2 input;
     private Base theBase;
     private float sum = 0f;
-    // Start is called before the first frame update
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -52,15 +53,15 @@ public class EnemyController : MonoBehaviour
                 input = (thePath.points[currentPoint].position - transform.position).normalized;
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
-
-                if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
-                {
-                    currentPoint = currentPoint + 1;
-                    if (currentPoint >= thePath.points.Length)
+              
+                    if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
                     {
-                        reachedEnd = true;
+                        currentPoint = currentPoint + 1;
+                        if (currentPoint >= thePath.points.Length)
+                        {
+                            reachedEnd = true;
+                        }
                     }
-                }
             }
             else
             {

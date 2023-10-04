@@ -18,20 +18,21 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firingPoint;
 
-
     private Transform target;
+
     void Start()
     {
         _gameStarted = true;
-       
+
         checkCounter = firerate;
 
     }
     void Update()
     {
-        if (target == null) {
+        if (target == null)
+        {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range,
-                (Vector2)transform.position, 0f,enemyMask);   
+                (Vector2)transform.position, 0f, enemyMask);
             if (hits.Length > 0)
             {
                 target = hits[0].transform;
@@ -39,23 +40,27 @@ public class Tower : MonoBehaviour
             return;
         }
         RotateTowardsTarget();
-        if (Vector2.Distance(target.position,transform.position) > range)
+
+
+        if (Vector2.Distance(target.position, transform.position) > range)
         {
             target = null;
         }
         else
         {
             checkCounter -= Time.deltaTime;
-            if (checkCounter <= 0) {
+            if (checkCounter <= 0)
+            {
                 checkCounter = firerate;
                 Shoot();
             }
         }
+
     }
 
     private void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab,firingPoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.SetTarget(target);
     }
@@ -72,4 +77,5 @@ public class Tower : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, range);
     }
 
+   
 }
