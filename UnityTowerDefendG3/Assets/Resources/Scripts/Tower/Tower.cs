@@ -17,6 +17,7 @@ public class Tower : MonoBehaviour
     private bool _gameStarted;
     public GameObject bulletPrefab;
     public Transform firingPoint;
+
     private Transform target;
 
     void Start()

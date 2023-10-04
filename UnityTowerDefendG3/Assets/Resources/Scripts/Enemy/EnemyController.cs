@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
     private bool reachedEnd;
     private Vector2 input;
     private Base theBase;
+    private float sum = 0f;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -51,12 +53,7 @@ public class EnemyController : MonoBehaviour
                 input = (thePath.points[currentPoint].position - transform.position).normalized;
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
-
-                if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
-
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                        moveSpeed * Time.deltaTime);
+              
                     if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
                     {
                         currentPoint = currentPoint + 1;
@@ -65,8 +62,6 @@ public class EnemyController : MonoBehaviour
                             reachedEnd = true;
                         }
                     }
-                }
-
             }
             else
             {
@@ -77,6 +72,7 @@ public class EnemyController : MonoBehaviour
     }
     public void takedamage(float damage)
     {
+        sum += damage;
         enemyHeath -= damage;
         if (enemyHeath <= 0)
         {
@@ -84,7 +80,6 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
         enemyHeathSlider.value = enemyHeath;
-        enemyHeathText.text = "-" +damage.ToString();
-
+        enemyHeathText.text = "-" + sum.ToString();
     }
 }
