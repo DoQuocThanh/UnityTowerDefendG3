@@ -2,22 +2,31 @@ using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Attribute")]
     public float moveSpeed;
+    public float enemyHeath;
+
+   
+    [Header("References")]
+    public Animator animator;
+    public Slider enemyHeathSlider;
+    public TextMeshProUGUI enemyHeathText;
+    
 
     private Path thePath;
     private int currentPoint;
     private bool reachedEnd;
-    public Animator animator;
     private Vector2 input;
-    public float enemyHeath;
     private Base theBase;
-    // Start is called before the first frame update
-
+    private float sum = 0f;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -26,6 +35,8 @@ public class EnemyController : MonoBehaviour
     {
         thePath = FindObjectOfType<Path>();
         theBase = FindObjectOfType<Base>();
+        enemyHeathSlider.maxValue = enemyHeath;
+        enemyHeathSlider.value = enemyHeath;
     }
 
     // Update is called once per frame
@@ -42,12 +53,7 @@ public class EnemyController : MonoBehaviour
                 input = (thePath.points[currentPoint].position - transform.position).normalized;
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
-
-                if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
-
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
-                        moveSpeed * Time.deltaTime);
+              
                     if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
                     {
                         currentPoint = currentPoint + 1;
@@ -56,8 +62,6 @@ public class EnemyController : MonoBehaviour
                             reachedEnd = true;
                         }
                     }
-                }
-
             }
             else
             {
@@ -68,11 +72,14 @@ public class EnemyController : MonoBehaviour
     }
     public void takedamage(float damage)
     {
+        sum += damage;
         enemyHeath -= damage;
         if (enemyHeath <= 0)
         {
             enemyHeath = 0;
             Destroy(gameObject);
         }
+        enemyHeathSlider.value = enemyHeath;
+        enemyHeathText.text = "-" + sum.ToString();
     }
 }
