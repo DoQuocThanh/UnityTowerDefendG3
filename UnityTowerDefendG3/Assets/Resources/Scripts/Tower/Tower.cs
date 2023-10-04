@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public enum Target
@@ -28,19 +29,24 @@ public class Tower : MonoBehaviour
     public Transform firingPoint;
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
+    private Base theBase;
 
     void Start()
     {
-
+        theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
 
     }
     private void Update()
     {
-        SelectionTarget();
-        RotateTowardsTarget();
-        if (enemyController != null) {
-            Shoot();
+        if (theBase.currentHeath > 0)
+        {
+            SelectionTarget();
+            RotateTowardsTarget();
+            if (enemyController != null)
+            {
+                Shoot();
+            }
         }
     }
     private void SelectionTarget()

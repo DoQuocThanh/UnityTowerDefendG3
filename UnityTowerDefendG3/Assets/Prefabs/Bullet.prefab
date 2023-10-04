@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firerateBullet: 10
-  bulletDamage: 4
+  bulletDamage: 5
 --- !u!50 &1290977502764423107
 Rigidbody2D:
   serializedVersion: 4
