@@ -11,7 +11,7 @@ public class Node : MonoBehaviour
     private void Start()
     {
         TowerSelectionPopup.SetActive(false);
-
+        
         // Setup listeners for each button
         TowerSelectionPopup.transform.Find("Button1").GetComponent<Button>().onClick.AddListener(() => BuyTower(Towers[0]));
         TowerSelectionPopup.transform.Find("Button2").GetComponent<Button>().onClick.AddListener(() => BuyTower(Towers[1]));

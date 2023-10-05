@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
             input = (thePath.points[currentPoint].position - transform.position).normalized;
             animator.SetFloat("moveX", input.x);
             animator.SetFloat("moveY", input.y);
-            Debug.Log(input);
+        
             if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
             {
                 currentPoint = currentPoint + 1;

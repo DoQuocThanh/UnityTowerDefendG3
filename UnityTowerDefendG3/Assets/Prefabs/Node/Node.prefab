@@ -98,7 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e34f16ceb842e41bc485cecfbb548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Towers: []
+  Towers:
+  - {fileID: 3789483554286685195, guid: 3b1d1278b132d694fb74def92fcfa852, type: 3}
+  - {fileID: 4668036293729425513, guid: 3692c5a30ee41414c887c96369a56b6a, type: 3}
+  - {fileID: 814900057372164496, guid: 60b5d20ddbcf35041803d397492bf8cd, type: 3}
   TowerSelectionPopup: {fileID: 0}
 --- !u!65 &-2890053759491397934
 BoxCollider:
