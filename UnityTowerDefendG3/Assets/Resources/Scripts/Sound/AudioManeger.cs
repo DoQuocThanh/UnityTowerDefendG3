@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class AudioManeger : MonoBehaviour
 {
-
-
     public static AudioManeger Instance;
     public Sound[] masterSound, musicSound, sfxSound;
     public AudioSource masterSoucre, musicSource, sfxSource;
@@ -54,7 +52,7 @@ public class AudioManeger : MonoBehaviour
         {
             sfxSource.PlayOneShot(s.clip);
             // sfxSource.clip = s.clip;
-            // sfxSource.Play();
+            sfxSource.Play();
         }
     }
 
