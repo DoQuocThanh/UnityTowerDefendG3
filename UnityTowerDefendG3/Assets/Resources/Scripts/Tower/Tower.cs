@@ -49,7 +49,7 @@ public class Tower : MonoBehaviour
     {
         float radius = circleCollider.radius;
         range.transform.localScale = new Vector3(radius, radius, radius);
-        range.SetActive(true);
+
     }
     private void Update()
     {
