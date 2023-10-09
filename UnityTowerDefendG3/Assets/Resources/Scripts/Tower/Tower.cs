@@ -49,7 +49,7 @@ public class Tower : MonoBehaviour
     private void OnMouseDown()
     {
         float radius = circleCollider.radius;
-        range.transform.localScale = new Vector3(radius, radius, radius);
+        //range.transform.localScale = new Vector3(radius, radius, radius);
 
     }
     private void Update()

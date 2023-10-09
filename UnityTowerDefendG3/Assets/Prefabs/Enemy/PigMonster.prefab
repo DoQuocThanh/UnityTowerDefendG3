@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5211753531922553178}
   - component: {fileID: 8637071819938129636}
   - component: {fileID: 5189924771823286790}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PigMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -184,8 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  enemyHeath: 10
+  moveSpeed: 0.8
+  enemyHeath: 15
+  moneyOnDeath: 5
   animator: {fileID: 8637071819938129636}
   enemyHeathSlider: {fileID: 5163050618584593683}
 --- !u!1 &2767067457958785264
@@ -199,7 +200,7 @@ GameObject:
   - component: {fileID: 6980931580772901384}
   - component: {fileID: 6015634828043342895}
   - component: {fileID: 1581925177997940229}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +275,7 @@ GameObject:
   - component: {fileID: 549389135254822796}
   - component: {fileID: 2784754006957746373}
   - component: {fileID: 2521209779716450243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +351,7 @@ GameObject:
   - component: {fileID: 533386264144418536}
   - component: {fileID: 6791813394401699089}
   - component: {fileID: 208385508260401894}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3360099896043835493}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3406657765257261660}
   - component: {fileID: 5163050618584593683}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeathSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
