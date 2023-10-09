@@ -68,6 +68,5 @@ public class SpanwerEnemy : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject prefabsToSpawn = enemyPrefabs[0];
-        Instantiate(prefabsToSpawn, Levelmanage.main.startPoint.position, Quaternion.identity);
     }
 }

@@ -23,7 +23,10 @@ public class Tower : MonoBehaviour
 
     [Header("Attribute")]
     public float firerate = .2f;
+    public bool isHuman = false;
+    public GameObject range;
     private float checkCounter;
+    private CircleCollider2D circleCollider;
 
     [Header("References")]
     public GameObject bulletPrefab;
