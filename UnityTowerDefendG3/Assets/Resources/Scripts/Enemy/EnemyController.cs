@@ -71,7 +71,6 @@ public class EnemyController : MonoBehaviour
         {
             Money.instance.GiveMoney(moneyOnDeath);
             Destroy(gameObject);
-        }
-        
+        }        
     }
 }

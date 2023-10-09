@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -28,8 +29,6 @@ public class Tower : MonoBehaviour
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firingPoint;
-    public GameObject range;
-    private CircleCollider2D circleCollider;
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
     private Base theBase;
@@ -43,7 +42,6 @@ public class Tower : MonoBehaviour
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
-
     }
     private void OnMouseDown()
     {
@@ -91,15 +89,18 @@ public class Tower : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D objec)
     {
-        if (objec.tag == "Enemy")
-        {
-            EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
-            if (enemy != null)
+       
+            if (objec.tag == "Enemy")
             {
-                eList.Add(enemy);
-            }
-        }
+                EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
+                if (enemy != null)
+                {
+                    eList.Add(enemy);
+                }
+            }      
+
     }
+
     private void OnTriggerExit2D(Collider2D objec)
     {
         if (objec.tag == "Enemy")
@@ -111,11 +112,24 @@ public class Tower : MonoBehaviour
             }
         }
     }
+
     private void RotateTowardsTarget()
     {
-        if (enemyController == null) return;
-        float angle = Vector3.SignedAngle(transform.up, enemyController.transform.position - transform.position, transform.forward);
-        transform.Rotate(0f, 0f, angle);
+        if (isHuman)
+        {
+            if (enemyController == null) return;
+        
+
+        }
+        else
+        {
+            if (enemyController == null) return;
+            float angle = Vector3.SignedAngle(transform.up, enemyController.transform.position - transform.position, transform.forward);
+            transform.Rotate(0f, 0f, angle);
+        }
+       
+       
+        //Xac dinh bool right or left
     }
     private void Shoot()
     {
