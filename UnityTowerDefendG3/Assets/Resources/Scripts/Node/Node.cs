@@ -4,67 +4,57 @@ using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
-    public GameObject[] Towers;
-    public GameObject TowerSelectionPopup;
-    private GameObject currentTower = null;
-
-    private bool onClick = false;
+    // public GameObject[] Towers;
+    public GameObject Panel_money;
+    public GameObject Panel;
+    public Tower TurretLoaded { get; set; }
+    public TowerItem TurretItemLoaded { get; set; }
     private void Start()
     {
-        TowerSelectionPopup.SetActive(false);
-        TowerSelectionPopup.transform.Find("Button1").GetComponent<Button>().onClick.AddListener(() => BuyTower(Towers[0]));
-        TowerSelectionPopup.transform.Find("Button2").GetComponent<Button>().onClick.AddListener(() => BuyTower(Towers[1]));
-        TowerSelectionPopup.transform.Find("Button3").GetComponent<Button>().onClick.AddListener(() => BuyTower(Towers[2]));
-
+        Panel_money.SetActive(false);
+        Panel.SetActive(false);
     }
-
-    public void Print() {
-        Debug.Log("dsadas");
-    }
-
-
-    
 
     private void OnMouseDown()
     {
-        onClick = true;
-        if (TowerSelectionPopup.activeSelf)
+        if (TurretItemLoaded == null)
         {
-            HideTowerSelectionPopup();
+            if (Panel_money.activeSelf)
+            {
+                HidePanel_money();
+            }
+            else
+            {
+                ShowPanel_money();
+                if (Money.instance.SelectedCard != null)
+                {
+                    TurretItemLoaded = Money.instance.SelectedCard.towerItem;
+                    if (Money.instance.SpendMoney(TurretItemLoaded.cost))
+                    {
+                        TurretLoaded = Instantiate(TurretItemLoaded.towerPrefab, transform);
+                        TurretLoaded.transform.localPosition = Vector3.zero;
+                        Money.instance.SelectedCard = null;
+                    }
+                    HidePanel_money();
+                }
+            }
         }
         else
         {
-            ShowTowerSelectionPopup();
+             Panel.SetActive(true);
         }
+
     }
 
-    private void ShowTowerSelectionPopup()
+    private void ShowPanel_money()
     {
-        Vector3 addPos = transform.position + Vector3.up;
-        TowerSelectionPopup.transform.position = addPos;
-        TowerSelectionPopup.SetActive(true);
-
+        Panel_money.SetActive(true);
 
     }
 
-    private void HideTowerSelectionPopup()
+    private void HidePanel_money()
     {
-        TowerSelectionPopup.SetActive(false);
+        Panel_money.SetActive(false);
     }
-
-    public void BuyTower(GameObject selectedTower)
-    {
-
-        if (this.onClick) {
-            if (currentTower)
-            {
-                Destroy(currentTower);
-            }
-
-            currentTower = Instantiate(selectedTower, transform.position, Quaternion.identity, this.transform);            
-            onClick = false;
-            HideTowerSelectionPopup();
-        }
-       
-    }
+    
 }

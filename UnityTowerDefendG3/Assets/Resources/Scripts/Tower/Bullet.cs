@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [Header("References")]
    
     [Header("Attributes")]
-    public float firerateBullet = 1f;
+    public float firerateBullet = 0.001f;
     public float bulletDamage;
     private EnemyController target;
     public void SetTarget(EnemyController _target)

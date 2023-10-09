@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     [Header("Attribute")]
     public float moveSpeed;
     public float enemyHeath;
-
+    public int moneyOnDeath = 50;
 
     [Header("References")]
     public Animator animator;
@@ -69,6 +69,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            Money.instance.GiveMoney(moneyOnDeath);
             Destroy(gameObject);
         }
         
