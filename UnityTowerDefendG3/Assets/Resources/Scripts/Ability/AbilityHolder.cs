@@ -31,7 +31,6 @@ public class AbilityHolder : MonoBehaviour
     {
         // Convert the non-UI object's position to screen space
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-
         // Set the UI Image's anchored position to the screen position
         abilityLayer.GetComponent<RectTransform>().position = screenPosition;
         cooldownLayer.fillAmount = 0f;
@@ -63,8 +62,7 @@ public class AbilityHolder : MonoBehaviour
             case AbilityState.active:
                 //Debug.Log("active");
                 if (Input.GetMouseButtonDown(0))
-                {
-      
+                {      
                     state = AbilityState.cooldown;
                     cooldownTimer = cooldownTime;
                 }
@@ -105,8 +103,5 @@ public class AbilityHolder : MonoBehaviour
             cooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
         }
     }
-
-   
-
 
 }
