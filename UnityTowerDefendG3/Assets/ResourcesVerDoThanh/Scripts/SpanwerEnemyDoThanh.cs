@@ -20,7 +20,7 @@ public class SpanwerEnemy : MonoBehaviour
     public  int  showEnemiesAlies;
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
-
+        
     private void Awake()
     {
       
