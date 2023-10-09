@@ -70,7 +70,6 @@ public class EnemyController : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-        
+        }        
     }
 }

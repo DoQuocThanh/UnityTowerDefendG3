@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,7 @@ public class AbilityHolder : MonoBehaviour
     public GameObject abilityLayer;
     public Image cooldownLayer;
     public Text cooldownText;
-   
-
+ 
     private float cooldownTimer;
 
     enum AbilityState
@@ -33,7 +33,7 @@ public class AbilityHolder : MonoBehaviour
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
         // Set the UI Image's anchored position to the screen position
-         abilityLayer.GetComponent<RectTransform>().position = screenPosition;
+        abilityLayer.GetComponent<RectTransform>().position = screenPosition;
         cooldownLayer.fillAmount = 0f;
         cooldownText.text = "";
     }
@@ -64,6 +64,7 @@ public class AbilityHolder : MonoBehaviour
                 //Debug.Log("active");
                 if (Input.GetMouseButtonDown(0))
                 {
+      
                     state = AbilityState.cooldown;
                     cooldownTimer = cooldownTime;
                 }
@@ -71,6 +72,7 @@ public class AbilityHolder : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     state = AbilityState.ready;
+
                 }
 
                 break;
@@ -103,6 +105,8 @@ public class AbilityHolder : MonoBehaviour
             cooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
         }
     }
+
+   
 
 
 }

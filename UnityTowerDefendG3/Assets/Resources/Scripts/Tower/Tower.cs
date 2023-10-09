@@ -77,7 +77,9 @@ public class Tower : MonoBehaviour
                 eList.Add(enemy);
             }
         }
+
     }
+
     private void OnTriggerExit2D(Collider2D objec)
     {
         if (objec.tag == "Enemy")

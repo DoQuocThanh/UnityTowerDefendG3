@@ -6,7 +6,7 @@ public class EnemySpanwer : MonoBehaviour
 {
     public EnemyController enemyToSpawn;
     public Transform spawnPoint;
-    public Transform spawnPoint1;
+
 
     public float timePerSpawn;
     private float spawnCounter;
@@ -28,8 +28,7 @@ public class EnemySpanwer : MonoBehaviour
             if (spawnCounter <= 0)
             {
                 spawnCounter = timePerSpawn;
-                Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
-                Instantiate(enemyToSpawn, spawnPoint1.position, spawnPoint1.rotation);
+                Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);     
                 totalSpawn--;
             }
         }
