@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -31,18 +32,25 @@ public class Tower : MonoBehaviour
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firingPoint;
-
-    [Header("IsHuman")]
-    public bool isHuman = false;
-
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
     private Base theBase;
 
+    private void Awake()
+    {
+        circleCollider = GetComponent<CircleCollider2D>();
+
+    }
     void Start()
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
+    }
+    private void OnMouseDown()
+    {
+        float radius = circleCollider.radius;
+        range.transform.localScale = new Vector3(radius, radius, radius);
+
     }
     private void Update()
     {
@@ -71,6 +79,14 @@ public class Tower : MonoBehaviour
                 {
                     enemyController = eList[eList.Count - 1];
                 }
+                break;
+            case Target.StrongestEnememies:
+                var desc = eList.OrderByDescending(o => o.GetComponent<EnemyController>().enemyHeath);
+                enemyController = desc.FirstOrDefault();
+                break;
+            case Target.WeakestEnememies:
+                var asc = eList.OrderBy(o => o.GetComponent<EnemyController>().enemyHeath);
+                enemyController = asc.FirstOrDefault();
                 break;
         }
     }
