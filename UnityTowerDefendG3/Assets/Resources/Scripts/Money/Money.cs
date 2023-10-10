@@ -54,8 +54,10 @@ public class Money : MonoBehaviour
         }else
         {
             textWarningTmp.text = "Not enough gold";
+            Destroy(textWarningTmp, 2f);
+
         }
-        
+
         return spent;
     }
 

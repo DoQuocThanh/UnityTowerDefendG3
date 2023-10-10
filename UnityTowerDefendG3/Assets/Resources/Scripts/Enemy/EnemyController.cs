@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
             input = (thePath.points[currentPoint].position - transform.position).normalized;
             animator.SetFloat("moveX", input.x);
             animator.SetFloat("moveY", input.y);
-        
+
             if (Vector2.Distance(transform.position, thePath.points[currentPoint].position) < .2f)
             {
                 currentPoint = currentPoint + 1;
@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    public void takedamage(float damage)
+    public void takeDamage(float damage)
     {
         enemyHeath = Mathf.Clamp(enemyHeath - damage, 0, enemyHeathSlider.maxValue);
         if (enemyHeath > 0)
@@ -71,6 +71,19 @@ public class EnemyController : MonoBehaviour
         {
             Money.instance.GiveMoney(moneyOnDeath);
             Destroy(gameObject);
-        }        
+        }
     }
+
+    public void takeSlow(float time, float percent) {
+
+    }
+
+    public void haveBurn(float time, float damePercent) {
+
+    }
+
+    public void haveStunned(float time){
+        
+    } 
+
 }

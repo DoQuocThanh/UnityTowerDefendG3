@@ -49,9 +49,8 @@ public class AbilityIndicator : MonoBehaviour
         {
             if (col.CompareTag(("Enemy")))
             {
-                col.gameObject.GetComponent<EnemyController>().takedamage(abilityDmg);
+                col.gameObject.GetComponent<EnemyController>().takeDamage(abilityDmg);
             }
-
         }
     }
         void ActivateAnimation()

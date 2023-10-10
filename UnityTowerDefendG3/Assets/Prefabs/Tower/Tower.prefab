@@ -165,9 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: 2
   firerate: 1
+  isHuman: 0
+  range: {fileID: 728948438680896608, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
   bulletPrefab: {fileID: 1112704144440249589, guid: 1d0bbdbdf52bd004eb60effcbebc0c5b, type: 3}
   firingPoint: {fileID: 689177945714159586}
-  isHuman: 0
 --- !u!50 &7132973011380206224
 Rigidbody2D:
   serializedVersion: 4

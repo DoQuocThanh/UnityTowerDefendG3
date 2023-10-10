@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 344289103063560665}
   - component: {fileID: 4393015899107039871}
   - component: {fileID: 7158858078436851765}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletCungThu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.176, y: -0.999, z: 0.02604378}
-  m_LocalScale: {x: 0.4, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f61cabbf7f2ec49acb429151296d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerateBullet: 0.001
+  firerateBullet: 10
   bulletDamage: 5
 --- !u!58 &4393015899107039871
 CircleCollider2D:
@@ -157,7 +157,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
-  m_Radius: 1.9
+  m_Radius: 1
 --- !u!50 &7158858078436851765
 Rigidbody2D:
   serializedVersion: 4

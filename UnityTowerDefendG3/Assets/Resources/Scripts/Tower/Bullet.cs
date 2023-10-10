@@ -19,6 +19,10 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         if (target == null) return;
+       
+        float angle = Vector3.SignedAngle(transform.up, target.transform.position - transform.position, transform.forward);
+        transform.Rotate(0f, 0f, angle);
+
         transform.position = Vector2.MoveTowards(transform.position,target.transform.position,
            firerateBullet * Time.deltaTime);
         
@@ -28,14 +32,11 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Debug.Log("cc");
-            other.gameObject.GetComponent<EnemyController>().takedamage(bulletDamage);
+            other.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
         }
         Destroy(gameObject);
     }
 
-   /* private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }*/
+  
 
 }
