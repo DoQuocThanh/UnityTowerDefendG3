@@ -27,31 +27,29 @@ public class Tower : MonoBehaviour
     public bool isHuman = false;
     public GameObject range;
     private float checkCounter;
-    private CircleCollider2D circleCollider;
+    [HideInInspector]
+    public CircleCollider2D circleCollider;
 
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firingPoint;
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
+    [HideInInspector]
+    public TowerUpgradeController upgrader;
     private Base theBase;
 
     private void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-
+        upgrader = GetComponent<TowerUpgradeController>();
     }
     void Start()
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
     }
-    private void OnMouseDown()
-    {
-        float radius = circleCollider.radius;
-        //range.transform.localScale = new Vector3(radius, radius, radius);
-
-    }
+    
     private void Update()
     {
         if (theBase.currentHeath > 0)
@@ -63,6 +61,13 @@ public class Tower : MonoBehaviour
                 Shoot();
             }
         }
+    }
+    private void OnMouseDown()
+    {
+        float radius = circleCollider.radius;
+        range.transform.localScale = new Vector3(radius, radius, radius);
+        range.SetActive(true);
+
     }
     private void SelectionTarget()
     {

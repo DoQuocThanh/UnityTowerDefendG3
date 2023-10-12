@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,7 @@ public class Money : MonoBehaviour
     private void Start()
     {
         LoadStore();
+
        
     }
     private void Update()
@@ -54,11 +56,15 @@ public class Money : MonoBehaviour
         }else
         {
             textWarningTmp.text = "Not enough gold";
-            Destroy(textWarningTmp, 2f);
-
+            StartCoroutine(ShowWarningAndDelay());
         }
 
         return spent;
     }
 
+    private IEnumerator ShowWarningAndDelay()
+    {
+        yield return new WaitForSeconds(2.0f);
+        textWarningTmp.text = "";
+    }
 }

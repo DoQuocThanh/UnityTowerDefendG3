@@ -28,4 +28,5 @@ public class MoneyCard : MonoBehaviour
             Debug.Log("meme");
         }
     }
+
 }

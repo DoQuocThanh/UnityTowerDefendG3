@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 5915172031174997698}
   - component: {fileID: 7132973011380206224}
   - component: {fileID: 561462636633949757}
+  - component: {fileID: -9049125975195039556}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -231,3 +232,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &-9049125975195039556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789483554286685195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd13f5aa85ecafb409f496558736215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeUpgrades:
+  - amount: 5
+    cost: 20
+  - amount: 10
+    cost: 40
+  currentRangeUpgrade: 0
+  firerateUpgrades:
+  - amount: 2
+    cost: 10
+  - amount: 1
+    cost: 20
+  currentFirerateUpgrade: 0
