@@ -1,13 +1,14 @@
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class AbilityIndicator : MonoBehaviour
 {
+    private Ability ability;
     public GameObject abilityAnimation;
-    public float abilityDmg = 1;
     public BoxCollider boxCollider;
     private void OnEnable()
     {
-        abilityAnimation.transform.localScale = gameObject.transform.localScale;     
+        abilityAnimation.transform.localScale = gameObject.transform.localScale;
     }
 
     void Update()
@@ -24,7 +25,7 @@ public class AbilityIndicator : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     abilityAnimation.transform.position = gameObject.transform.position;
-                    DmgEnemy();
+                    ability.Activate(this);
                     gameObject.SetActive(false); // Hide Indicator to show animation              
                     ActivateAnimation();
                 }
@@ -36,25 +37,17 @@ public class AbilityIndicator : MonoBehaviour
         }
     }
 
-    void DmgEnemy()
-    {        
-        Vector2 center = boxCollider.bounds.center;
-        // Size of the BoxCollider
-        Vector2 size = boxCollider.bounds.size;
-        // Rotation of the BoxCollider
-        Quaternion rotation = boxCollider.transform.rotation;
-        // Check for objects within the BoxCollider volume
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(center, size, 0f);
-        foreach (Collider2D col in colliders)
-        {
-            if (col.CompareTag(("Enemy")))
-            {
-                col.gameObject.GetComponent<EnemyController>().takeDamage(abilityDmg);
-            }
-        }
-    }
-        void ActivateAnimation()
+
+
+
+
+    void ActivateAnimation()
     {
         abilityAnimation.SetActive(true);
+    }
+
+    public void SetAbility(Ability ability)
+    {
+        this.ability = ability;
     }
 }

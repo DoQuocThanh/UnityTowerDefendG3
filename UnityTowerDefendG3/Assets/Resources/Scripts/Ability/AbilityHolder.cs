@@ -1,16 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AbilityHolder : MonoBehaviour
 {
+    public Ability ability;
     public GameObject abilityIndicator;
     public float cooldownTime;
     public GameObject abilityLayer;
     public Image cooldownLayer;
     public Text cooldownText;
- 
-    private float cooldownTimer;
+
 
     enum AbilityState
     {
@@ -24,9 +23,10 @@ public class AbilityHolder : MonoBehaviour
     public void ActivateIndicator()
     {
         abilityIndicator.SetActive(true);
+        abilityIndicator.GetComponent<AbilityIndicator>().SetAbility(ability);
     }
 
-    
+
     void Start()
     {
         // Convert the non-UI object's position to screen space
@@ -62,9 +62,9 @@ public class AbilityHolder : MonoBehaviour
             case AbilityState.active:
                 //Debug.Log("active");
                 if (Input.GetMouseButtonDown(0))
-                {      
+                {
                     state = AbilityState.cooldown;
-                    cooldownTimer = cooldownTime;
+                    cooldownTime = ability.cooldownTime;
                 }
 
                 if (Input.GetMouseButtonDown(1))
@@ -77,9 +77,9 @@ public class AbilityHolder : MonoBehaviour
 
             case AbilityState.cooldown:
                 //Debug.Log("cooldown");
-                if (cooldownTimer > 0)
+                if (cooldownTime > 0)
                 {
-                    cooldownTimer -= Time.deltaTime;
+                    cooldownTime -= Time.deltaTime;
                     CooldownAbility();
                 }
                 else
@@ -92,15 +92,15 @@ public class AbilityHolder : MonoBehaviour
 
     void CooldownAbility()
     {
-        if (cooldownTimer <= 0f)
+        if (cooldownTime <= 0f)
         {
-            cooldownLayer.fillAmount= 0f;
+            cooldownLayer.fillAmount = 0f;
             cooldownText.text = "";
         }
         else
         {
-            cooldownLayer.fillAmount = cooldownTimer/cooldownTime;
-            cooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
+            cooldownLayer.fillAmount = cooldownTime / ability.cooldownTime;
+            cooldownText.text = Mathf.Ceil(cooldownTime).ToString();
         }
     }
 
