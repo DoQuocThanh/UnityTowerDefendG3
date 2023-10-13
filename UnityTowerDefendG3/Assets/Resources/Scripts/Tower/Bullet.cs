@@ -10,6 +10,12 @@ public class Bullet : MonoBehaviour
     [Header("Attributes")]
     public float firerateBullet = 0.001f;
     public float bulletDamage;
+    [Header("Boom")]
+    public float rangeBoom = 3;
+    public bool isBoom = false;
+    public GameObject boomAnimation;
+    public float timeAnimation = 0.1f;
+
     private EnemyController target;
     public void SetTarget(EnemyController _target)
     {
@@ -29,14 +35,36 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
-        {
-            Debug.Log("cc");
-            other.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
-        }
-        Destroy(gameObject);
+        DamageEnemy(other);
     }
 
-  
 
+    private void DamageEnemy(Collider2D enemy) {
+        if (enemy.CompareTag(("Enemy")))
+        {
+            if (isBoom)
+            {               
+                Vector3 boomPosition = enemy.gameObject.GetComponent<EnemyController>().transform.position;
+                DamageBoom(boomPosition);
+            }
+            else {
+                enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
+            }           
+        }
+        Destroy(gameObject);    
+    }
+
+    private void DamageBoom(Vector3 position) {
+        boomAnimation.transform.localScale = this.transform.localScale*rangeBoom;
+        GameObject boom = Instantiate(boomAnimation, position, Quaternion.identity);
+        Destroy(boom,timeAnimation);
+        Collider2D[] listEnemies = Physics2D.OverlapCircleAll(position, rangeBoom);
+        foreach (Collider2D enemy in listEnemies)
+        {
+            if (enemy.CompareTag(("Enemy"))) {
+                enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
+            }
+        }
+      
+    }
 }

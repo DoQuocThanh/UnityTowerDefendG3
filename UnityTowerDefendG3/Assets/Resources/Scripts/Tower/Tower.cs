@@ -9,6 +9,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public enum Target
 {
@@ -28,12 +29,12 @@ public class Tower : MonoBehaviour
     public GameObject range;
     private float checkCounter;
     private CircleCollider2D circleCollider;
-
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firingPoint;
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
+
     private Base theBase;
 
     private void Awake()
@@ -59,8 +60,12 @@ public class Tower : MonoBehaviour
             SelectionTarget();
             RotateTowardsTarget();
             if (enemyController != null)
-            {
+            {                
                 Shoot();
+                ShotAnimator(true);
+            }
+            else {
+                ShotAnimator(false);
             }
         }
     }
@@ -93,7 +98,7 @@ public class Tower : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D objec)
     {
        
-            if (objec.tag == "Enemy")
+            if (objec.CompareTag(("Enemy")))
             {
                 EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
                 if (enemy != null)
@@ -106,7 +111,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D objec)
     {
-        if (objec.tag == "Enemy")
+        if (objec.CompareTag(("Enemy")))
         {
             EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
             if (eList.Contains(enemy))
@@ -120,8 +125,7 @@ public class Tower : MonoBehaviour
     {
         if (isHuman)
         {
-            if (enemyController == null) return;
-        
+            if (enemyController == null) return;       
 
         }
         else
@@ -146,6 +150,13 @@ public class Tower : MonoBehaviour
             bulletScript.SetTarget(enemyController);
         }
 
+    }
+
+    void ShotAnimator(bool isShot) {
+        Animator weaponAnimator = this.GetComponentInChildren<Animator>();
+        if (weaponAnimator != null) {
+            weaponAnimator.SetBool("isShot", isShot);        
+        }
     }
 
     

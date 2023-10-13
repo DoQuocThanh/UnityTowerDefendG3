@@ -7,7 +7,7 @@ public class AbilityIndicator : MonoBehaviour
     public BoxCollider boxCollider;
     private void OnEnable()
     {
-        abilityAnimation.transform.localScale = gameObject.transform.localScale;     
+        abilityAnimation.transform.localScale = gameObject.transform.localScale;
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class AbilityIndicator : MonoBehaviour
     }
 
     void DmgEnemy()
-    {        
+    {
         Vector2 center = boxCollider.bounds.center;
         // Size of the BoxCollider
         Vector2 size = boxCollider.bounds.size;
@@ -53,7 +53,7 @@ public class AbilityIndicator : MonoBehaviour
             }
         }
     }
-        void ActivateAnimation()
+    void ActivateAnimation()
     {
         abilityAnimation.SetActive(true);
     }
