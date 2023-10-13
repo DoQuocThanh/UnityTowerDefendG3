@@ -3037,11 +3037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1673020355 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3816171606392139792, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
-  m_PrefabInstance: {fileID: 6936354411373071331}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685955535
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,10 +4133,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8663013844910115249, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
-      propertyPath: firingPoint
-      value: 
-      objectReference: {fileID: 1673020355}
     - target: {fileID: 1820886225562727148, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
       propertyPath: m_Name
       value: ThapCungThu
@@ -4185,10 +4176,6 @@ PrefabInstance:
     - target: {fileID: 2065023892044522540, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5260230243159803537, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
-      propertyPath: m_Radius
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

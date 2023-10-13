@@ -28,16 +28,10 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("dddddddddddddddd");
-        if (TowerLoaded == null && Panel_money!)
+        Debug.Log("2332323232");
+        if (TowerLoaded == null )
         {
-            Debug.Log("cccccccccccc");
-            if (Panel_money.activeSelf)
-            {
-                Panel_money.SetActive(false);
-            }
-            else
-            {
+            
                 Panel_money.SetActive(true);
                 GetRectPositopn();
                 if (Money.instance.SelectedCard != null)
@@ -45,15 +39,11 @@ public class Node : MonoBehaviour
 
                     if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
                     {
-                     //  TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform);
                      TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
-
-                       // TowerLoaded.transform.localPosition = Vector3.zero;
-                        Money.instance.SelectedCard = null;
-                        Panel_money.SetActive(false);
+                     Money.instance.SelectedCard = null;
+                     Panel_money.SetActive(false);
                     }
                 }
-            }
         }
         else
         {
@@ -76,19 +66,27 @@ public class Node : MonoBehaviour
 
     public void SellTowerUpgradePanel()
     {
-        Money.instance.SpendMoney(-5);
-        TowerLoaded.gameObject.SetActive(false);
-        Panel_Upgrade.SetActive(false);
+        if(TowerLoaded != null)
+        {
+            Money.instance.SpendMoney(-5);
+            Destroy(TowerLoaded.gameObject);
+            TowerLoaded = null;
+            Panel_Upgrade.SetActive(false);
+        }
+        
     }
 
     public void UpgradeRange()
     {
-        TowerUpgradeController upgrader = TowerLoaded.upgrader;
-        if (upgrader.hasRangeUpgrade)
+        if (TowerLoaded != null)
         {
-            if (Money.instance.SpendMoney(upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost))
+            TowerUpgradeController upgrader = TowerLoaded.upgrader;
+            if (upgrader.hasRangeUpgrade)
             {
-                upgrader.upgradeRange();
+                if (Money.instance.SpendMoney(upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost))
+                {
+                    upgrader.upgradeRange();
+                }
             }
         }
     }
