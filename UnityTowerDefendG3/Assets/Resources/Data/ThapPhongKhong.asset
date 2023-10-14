@@ -10,5 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d6a08de0bc611945ac463bc4683e09b, type: 3}
-  m_Name: Data3
+  m_Name: ThapPhongKhong
   m_EditorClassIdentifier: 
+  ID: 
+  towerPrefab: {fileID: 0}
+  Image: {fileID: 0}
+  CoinImg: {fileID: 0}
+  cost: 0
+  towerInforImg: {fileID: 0}
+  Projectile: {fileID: 0}
