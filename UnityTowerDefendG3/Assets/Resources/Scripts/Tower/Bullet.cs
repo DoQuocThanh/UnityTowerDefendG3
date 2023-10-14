@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         transform.Rotate(0f, 0f, angle);
 
         transform.position = Vector2.MoveTowards(transform.position,target.transform.position,
-           firerateBullet * Time.deltaTime);
+        firerateBullet * Time.deltaTime);
         
     }
     private void OnTriggerEnter2D(Collider2D other)
