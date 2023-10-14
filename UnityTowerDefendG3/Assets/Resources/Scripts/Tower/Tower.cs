@@ -61,13 +61,20 @@ public class Tower : MonoBehaviour
                 Shoot();
             }
         }
+        if (FindObjectOfType<Node>().TowerLoaded == this)
+        {
+            float radius = circleCollider.radius;
+            range.transform.localScale = new Vector3(radius, radius, radius);
+            range.SetActive(true);
+        }
     }
     private void OnMouseDown()
     {
-        Debug.Log("11111111111");
-        float radius = circleCollider.radius;
-        range.transform.localScale = new Vector3(radius, radius, radius);
-        range.SetActive(true);
+        if (FindObjectOfType<Node>().TowerLoaded !=null)
+        {
+            Debug.Log("11111111111");
+            range.SetActive(false);
+        }
 
     }
     private void SelectionTarget()
@@ -127,8 +134,6 @@ public class Tower : MonoBehaviour
         if (isHuman)
         {
             if (enemyController == null) return;
-        
-
         }
         else
         {

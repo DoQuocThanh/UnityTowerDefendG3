@@ -207,19 +207,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeUpgrades:
-  - amount: 0
-    cost: 0
-  - amount: 0
-    cost: 0
+  - amount: 2.5
+    cost: 20
+  - amount: 3.5
+    cost: 30
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
   firerateUpgrades:
-  - amount: 0
-    cost: 0
-  - amount: 0
-    cost: 0
+  - amount: 0.5
+    cost: 20
+  - amount: 0.25
+    cost: 30
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
+  damageUpgrades:
+  - amount: 100
+    cost: 50
+  currentDamageUpgrade: 0
+  hasDamageUpgrade: 1
 --- !u!1 &8198673963612213652
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,13 +268,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerRange
       objectReference: {fileID: 0}
+    - target: {fileID: 728948438680896608, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3212393985897861751, guid: 362b594ff4197b14d90fc0db246a4558, type: 3}
       propertyPath: m_LocalPosition.z

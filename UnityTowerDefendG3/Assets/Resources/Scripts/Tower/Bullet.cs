@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
    
     [Header("Attributes")]
     public float firerateBullet = 0.001f;
-    public float bulletDamage;
+    public float bulletDamage = 2;
     private EnemyController target;
     public void SetTarget(EnemyController _target)
     {
