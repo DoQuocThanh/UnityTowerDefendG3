@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
        
         float angle = Vector3.SignedAngle(transform.up, target.transform.position - transform.position, transform.forward);
         transform.Rotate(0f, 0f, angle);
+        AudioManeger.Instance.PlaySFX("gun");
 
         transform.position = Vector2.MoveTowards(transform.position,target.transform.position,
            firerateBullet * Time.deltaTime);
@@ -33,6 +34,8 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("cc");
             other.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
+            AudioManeger.Instance.PlaySFX("tieng_sung");
+
         }
         Destroy(gameObject);
     }

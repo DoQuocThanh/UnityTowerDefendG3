@@ -11,6 +11,8 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
+
+        AudioManeger.Instance.PlayMusic("nhac_chon_map");
         UpdateLevelStatus();
         UpdateLevelImage();
         //PlayerPrefs.DeleteAll();

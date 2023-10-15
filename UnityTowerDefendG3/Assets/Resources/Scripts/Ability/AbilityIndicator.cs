@@ -49,6 +49,8 @@ public class AbilityIndicator : MonoBehaviour
         {
             if (col.CompareTag(("Enemy")))
             {
+                AudioManeger.Instance.PlaySFX("ki_nang");
+
                 col.gameObject.GetComponent<EnemyController>().takeDamage(abilityDmg);
             }
         }
