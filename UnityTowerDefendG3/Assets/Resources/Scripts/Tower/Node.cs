@@ -21,7 +21,8 @@ public class Node : MonoBehaviour
     private bool checkRange = true;
     private void Start()
     {
-        
+        Panel_money.SetActive(false);
+        Panel_Upgrade.SetActive(false);
         towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
         towerInfo.transform.Find("Button - Sell").GetComponent<Button>().onClick.AddListener(() => SellTowerUpgradePanel());
         towerInfo.transform.Find("Button - UpgradeRange").GetComponent<Button>().onClick.AddListener(() => UpgradeRange());
