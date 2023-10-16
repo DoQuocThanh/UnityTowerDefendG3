@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1290977502764423107}
   m_Layer: 6
   m_Name: BulletPhaoDaiBang
-  m_TagString: Untagged
+  m_TagString: DanBang
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firerateBullet: 10
   bulletDamage: 2
+  bulletSnow: 0.1
+  bulletSnowTime: 2
+  damagePercentFire: 0
+  bulletFireTime: 0
   rangeBoom: 1
   isBoom: 1
   boomAnimation: {fileID: 1642595014756588749, guid: ec71205889a48f448b2cfc335a773421, type: 3}

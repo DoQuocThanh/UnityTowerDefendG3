@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  enemyHeath: 10
+  enemyHeath: 20
   moneyOnDeath: 5
   animator: {fileID: 6672236776421558829}
   enemyHeathSlider: {fileID: 5490713087900610146}

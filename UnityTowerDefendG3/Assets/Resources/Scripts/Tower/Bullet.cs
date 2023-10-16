@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     [Header("Attributes")]
     public float firerateBullet = 0.001f;
     public float bulletDamage;
+    public float bulletSnow;
+    public float bulletSnowTime;
+    public float damagePercentFire;
+    public float bulletFireTime;
+
     [Header("Boom")]
     public float rangeBoom = 3;
     public bool isBoom = false;
@@ -38,6 +43,20 @@ public class Bullet : MonoBehaviour
         DamageEnemy(other);
     }
 
+    private void EffectAndDmgEnemy(Collider2D other) {
+        switch (this.gameObject.tag)
+        {
+            case "DanBang":
+                other.gameObject.GetComponent<EnemyController>().ApplySlowEffect(bulletSnowTime, bulletSnow);
+                break;
+            case "DanLua":
+                other.gameObject.GetComponent<EnemyController>().ApplyBurnEffect(bulletFireTime, damagePercentFire);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private void DamageEnemy(Collider2D enemy) {
         if (enemy.CompareTag(("Enemy")))
@@ -48,6 +67,7 @@ public class Bullet : MonoBehaviour
                 DamageBoom(boomPosition);
             }
             else {
+                EffectAndDmgEnemy(enemy);
                 enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
             }           
         }
@@ -63,6 +83,7 @@ public class Bullet : MonoBehaviour
         {
             if (enemy.CompareTag(("Enemy"))) {
                 enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
+                EffectAndDmgEnemy(enemy);
             }
         }
       
