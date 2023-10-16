@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,22 +61,23 @@ public class Tower : MonoBehaviour
                 Shoot();
             }
         }
-        if (FindObjectOfType<Node>().TowerLoaded == this)
-        {
-            float radius = circleCollider.radius;
-            range.transform.localScale = new Vector3(radius, radius, radius);
-            range.SetActive(true);
-        }
-    }
-    private void OnMouseDown()
-    {
-        if (FindObjectOfType<Node>().TowerLoaded !=null)
-        {
-            Debug.Log("11111111111");
-            range.SetActive(false);
-        }
 
+       
+            
     }
+
+    public void getRange()
+    {
+        float radius = circleCollider.radius;
+        range.transform.localScale = new Vector3(radius, radius, radius);
+        range.SetActive(true);
+    }
+
+    public void removeRange()
+    {
+        range.SetActive(false);
+    }
+
     private void SelectionTarget()
     {
         switch (target)
