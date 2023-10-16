@@ -525,12 +525,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
-  enemyHeath: 10
-  moneyOnDeath: 2
+  moveSpeed: 1.2
+  enemyHeath: 40
+  moneyOnDeath: 15
   animator: {fileID: 8232565460052421006}
   enemyHeathSlider: {fileID: 8680406903354205136}
-  typeEnemy: 
+  stateIcon: {fileID: 0}
+  burnEffect: {fileID: 0}
 --- !u!1 &8832100064959838351
 GameObject:
   m_ObjectHideFlags: 0

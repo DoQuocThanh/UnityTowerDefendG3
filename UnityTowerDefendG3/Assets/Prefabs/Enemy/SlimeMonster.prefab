@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
-  enemyHeath: 10
+  moveSpeed: 1.2
+  enemyHeath: 20
   moneyOnDeath: 2
   animator: {fileID: 7309989369419847236}
   enemyHeathSlider: {fileID: 6050590188957364477}

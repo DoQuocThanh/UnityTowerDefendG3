@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2036196529473155994}
   m_Layer: 6
   m_Name: BulletPhuThuyLua
-  m_TagString: Untagged
+  m_TagString: DanLua
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firerateBullet: 10
   bulletDamage: 5
+  bulletSnow: 0
+  bulletSnowTime: 0
+  damagePercentFire: 0.1
+  bulletFireTime: 2
   rangeBoom: 0
   isBoom: 0
   boomAnimation: {fileID: 4944090346918082478, guid: f4efcfee12ba2e4479bac724392748fa, type: 3}
