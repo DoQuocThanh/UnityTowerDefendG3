@@ -7,7 +7,7 @@ public class AudioManeger : MonoBehaviour
 {
     public static AudioManeger Instance;
     public Sound[] masterSound, musicSound, sfxSound;
-    public AudioSource masterSoucre, musicSource, sfxSource;
+    public AudioSource masterSoucre, musicSource, sfxSource ;
 
     private void Awake()
     {
@@ -22,12 +22,13 @@ public class AudioManeger : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
-    {
-        PlayMusic("Theme");
-    }
+    //private void Start()
+    //{
+    //   // PlayMusic("Theme");
+    //}
     public void PlayMusic(string name)
     {
+        StopMusic();
         Sound s = Array.Find(musicSound, s => s.name == name);
 
         if (s == null)
@@ -40,8 +41,10 @@ public class AudioManeger : MonoBehaviour
             musicSource.Play();
         }
     }
+
     public void PlaySFX(string name)
     {
+       StopMusic();
         Sound s = Array.Find(sfxSound, s => s.name == name);
 
         if (s == null)
@@ -51,9 +54,14 @@ public class AudioManeger : MonoBehaviour
         else
         {
             sfxSource.PlayOneShot(s.clip);
-            // sfxSource.clip = s.clip;
             sfxSource.Play();
         }
+    }
+    public void StopMusic()
+    {
+        sfxSource.Stop();
+        musicSource.Stop();
+        masterSoucre.Stop();
     }
 
     public void ToggleMusic()

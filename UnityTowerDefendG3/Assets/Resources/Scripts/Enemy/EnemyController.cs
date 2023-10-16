@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
     public Slider enemyHeathSlider;
 
+    [Header("Type")]
+    public string typeEnemy;
 
     private Path thePath;
     private int currentPoint;

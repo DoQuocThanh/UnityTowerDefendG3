@@ -25,7 +25,6 @@ public class MoneyCard : MonoBehaviour
         if (towerItem)
         {
             Money.instance.SelectedCard = this;
-            Debug.Log("meme");
         }
     }
 

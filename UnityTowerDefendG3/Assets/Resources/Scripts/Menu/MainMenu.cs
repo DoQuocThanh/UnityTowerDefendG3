@@ -10,12 +10,17 @@ public class MainMenu : MonoBehaviour
         AudioManeger.Instance.PlaySFX("btn_Click");
         StartCoroutine(LoadGameScene());
     }
+    private void Start()
+    {
+    
+      AudioManeger.Instance.PlayMusic("Theme");
+
+    }
 
     private IEnumerator LoadGameScene()
     {
-        // Chờ một khoảng thời gian ngắn để phát âm thanh
         yield return new WaitForSeconds(0.3f);
-
+     //  AudioManeger.Instance.PlayMusic("Theme");
         // Sau khi chờ, tải Scene mới
         SceneManager.LoadScene(1);
     }
