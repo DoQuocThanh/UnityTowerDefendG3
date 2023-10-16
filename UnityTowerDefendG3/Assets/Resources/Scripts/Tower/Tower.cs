@@ -49,6 +49,7 @@ public class Tower : MonoBehaviour
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
+        getRange();
     }
     
     private void Update()

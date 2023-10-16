@@ -33,6 +33,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        //AudioManeger.Instance.PlayMusic("Theme");
         StartCoroutine(SpawnWaves());
     }
 
