@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public enum Target
 {
@@ -27,31 +28,30 @@ public class Tower : MonoBehaviour
     public bool isHuman = false;
     public GameObject range;
     private float checkCounter;
-    private CircleCollider2D circleCollider;
+    [HideInInspector]
+    public CircleCollider2D circleCollider;
 
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firingPoint;
     private List<EnemyController> eList = new List<EnemyController>();
     public EnemyController enemyController { get; set; }
+    [HideInInspector]
+    public TowerUpgradeController upgrader;
     private Base theBase;
 
     private void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-
+        upgrader = GetComponent<TowerUpgradeController>();
     }
     void Start()
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
+        getRange();
     }
-    private void OnMouseDown()
-    {
-        float radius = circleCollider.radius;
-        //range.transform.localScale = new Vector3(radius, radius, radius);
-
-    }
+    
     private void Update()
     {
         if (theBase.currentHeath > 0)
@@ -59,11 +59,28 @@ public class Tower : MonoBehaviour
             SelectionTarget();
             RotateTowardsTarget();
             if (enemyController != null)
-            {
+            {                
                 Shoot();
+                ShotAnimator(true);
             }
         }
+
+       
+            
     }
+
+    public void getRange()
+    {
+        float radius = circleCollider.radius;
+        range.transform.localScale = new Vector3(radius, radius, radius);
+        range.SetActive(true);
+    }
+
+    public void removeRange()
+    {
+        range.SetActive(false);
+    }
+
     private void SelectionTarget()
     {
         switch (target)
@@ -93,7 +110,7 @@ public class Tower : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D objec)
     {
        
-            if (objec.tag == "Enemy")
+            if (objec.CompareTag(("Enemy")))
             {
                 EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
                 if (enemy != null)
@@ -106,7 +123,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D objec)
     {
-        if (objec.tag == "Enemy")
+        if (objec.CompareTag(("Enemy")))
         {
             EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
             if (eList.Contains(enemy))
@@ -121,8 +138,6 @@ public class Tower : MonoBehaviour
         if (isHuman)
         {
             if (enemyController == null) return;
-        
-
         }
         else
         {
@@ -146,6 +161,13 @@ public class Tower : MonoBehaviour
             bulletScript.SetTarget(enemyController);
         }
 
+    }
+
+    void ShotAnimator(bool isShot) {
+        Animator weaponAnimator = this.GetComponentInChildren<Animator>();
+        if (weaponAnimator != null) {
+            weaponAnimator.SetBool("isShot", isShot);        
+        }
     }
 
     

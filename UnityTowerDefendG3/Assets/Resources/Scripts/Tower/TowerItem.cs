@@ -12,8 +12,4 @@ public class TowerItem : ScriptableObject
     public Sprite Image;
     public Sprite CoinImg;
     public int cost;
-
-    [Header("Projectile")]
-    public Sprite towerInforImg;
-    public Sprite Projectile;
 }

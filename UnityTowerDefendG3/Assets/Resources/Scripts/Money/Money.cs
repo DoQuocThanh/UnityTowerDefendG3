@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,8 +14,11 @@ public class Money : MonoBehaviour
 
     [Header ("Coin infomation")]
     public TextMeshProUGUI textWarningTmp;
-    public int currentMoney = 30;
+    public int currentMoney = 1000;
     public TextMeshProUGUI moneyTmp;
+    /*public TextMeshProUGUI giveMoneyTmp;
+    public TextMeshProUGUI spendMoneyTmp;*/
+
     public MoneyCard SelectedCard{ get;set;}
     private void Awake()
     {
@@ -24,6 +28,7 @@ public class Money : MonoBehaviour
     private void Start()
     {
         LoadStore();
+
        
     }
     private void Update()
@@ -42,6 +47,7 @@ public class Money : MonoBehaviour
     public void GiveMoney(int amount)
     {
         currentMoney += amount;
+     //   giveMoneyTmp.text = "+ "+ amount.ToString();
     }
 
     public bool SpendMoney(int amountToSpend)
@@ -51,14 +57,24 @@ public class Money : MonoBehaviour
         {
             spent = true;
             currentMoney -= amountToSpend;
+       //     spendMoneyTmp.text = "- " + amountToSpend.ToString();
         }else
         {
             textWarningTmp.text = "Not enough gold";
-            Destroy(textWarningTmp, 2f);
-
+            // StartCoroutine(ShowWarningAndDelay());
+            Invoke("ShowWarningAndDelay", 2);
         }
 
         return spent;
     }
 
+   /* private IEnumerator ShowWarningAndDelay()
+    {
+        yield return new WaitForSeconds(2.0f);
+        textWarningTmp.text = "";
+    }*/
+   private void ShowWarningAndDelay()
+    {
+        textWarningTmp.text = "";
+    }
 }
