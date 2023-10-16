@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 70897557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -967.57, y: -542.16, z: -0.04453042}
+  m_LocalPosition: {x: -519.22, y: -289.69, z: -0.04453042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db08bce6162af94dba746fdb7ff57fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: c782ce7c8f3374048a8d0448af03ba26, type: 2}
   abilityIndicator: {fileID: 410859131}
   cooldownTime: 10
   abilityLayer: {fileID: 225637897}
@@ -806,7 +807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityAnimation: {fileID: 1616916134}
-  abilityDmg: 1
   boxCollider: {fileID: 299831873}
 --- !u!212 &299831875
 SpriteRenderer:
@@ -1073,7 +1073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityAnimation: {fileID: 1313014514}
-  abilityDmg: 15
   boxCollider: {fileID: 410859133}
 --- !u!212 &410859135
 SpriteRenderer:
@@ -2042,6 +2041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db08bce6162af94dba746fdb7ff57fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: de3f2381f94eb914482f90357dce3ee1, type: 2}
   abilityIndicator: {fileID: 1430283524}
   cooldownTime: 30
   abilityLayer: {fileID: 1304801522}
@@ -3439,7 +3439,7 @@ Animator:
   m_GameObject: {fileID: 1313014514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7e7f6fdc7afffb4db4190d2a0c6293c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 11289b8514cd6e14a8a9fdb4c76029dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3968,7 +3968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityAnimation: {fileID: 1087396060}
-  abilityDmg: 10
   boxCollider: {fileID: 1430283526}
 --- !u!212 &1430283528
 SpriteRenderer:
@@ -5264,6 +5263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db08bce6162af94dba746fdb7ff57fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: fe091f0acbfd9cb44ac6b06c1fe53e8d, type: 2}
   abilityIndicator: {fileID: 299831871}
   cooldownTime: 1
   abilityLayer: {fileID: 865792360}
