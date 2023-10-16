@@ -38,9 +38,6 @@ public class AbilityIndicator : MonoBehaviour
     }
 
 
-
-
-
     void ActivateAnimation()
     {
         abilityAnimation.SetActive(true);
