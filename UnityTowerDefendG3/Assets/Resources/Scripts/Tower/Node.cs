@@ -52,6 +52,10 @@ public class Node : MonoBehaviour
     //        oldNode = this;
     //    }
 
+    //    Debug.Log("dsada");
+    //    Panel_money.SetActive(false);
+    //    Panel_Upgrade.SetActive(false);
+
     //    if (TowerLoaded == null && isClick)
     //    {
     //        Panel_money.SetActive(true);
@@ -67,6 +71,7 @@ public class Node : MonoBehaviour
     //            }
     //        }
     //    }
+
     //    else
     //    {
     //        Panel_Upgrade.SetActive(true);
@@ -80,7 +85,7 @@ public class Node : MonoBehaviour
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
 
-        if (TowerLoaded == null )
+        if (TowerLoaded == null)
         {
             Panel_money.SetActive(true);
 
@@ -136,7 +141,7 @@ public class Node : MonoBehaviour
     }
     public void UpgradeRange()
     {
-        if (TowerLoaded != null )
+        if (TowerLoaded != null)
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
             if (upgrader.hasRangeUpgrade)

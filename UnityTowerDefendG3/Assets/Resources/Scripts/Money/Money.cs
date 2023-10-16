@@ -14,7 +14,7 @@ public class Money : MonoBehaviour
 
     [Header ("Coin infomation")]
     public TextMeshProUGUI textWarningTmp;
-    public int currentMoney = 30;
+    public int currentMoney = 1000;
     public TextMeshProUGUI moneyTmp;
     /*public TextMeshProUGUI giveMoneyTmp;
     public TextMeshProUGUI spendMoneyTmp;*/
