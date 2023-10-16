@@ -12,16 +12,16 @@ public class Node : MonoBehaviour
     public GameObject Panel_money;
     public GameObject Panel_Upgrade;
     public GameObject towerInfo;
-    
 
+    public static Node oldNode;
+    private bool isClick = false;
     //  public RectTransform rectTransform;
     //  public TextMeshProUGUI upRangeText, upFirerateText;
     public Tower TowerLoaded { get; set; }
     private bool checkRange = true;
     private void Start()
     {
-        Panel_money.SetActive(false);
-        Panel_Upgrade.SetActive(false);
+        
         towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
         towerInfo.transform.Find("Button - Sell").GetComponent<Button>().onClick.AddListener(() => SellTowerUpgradePanel());
         towerInfo.transform.Find("Button - UpgradeRange").GetComponent<Button>().onClick.AddListener(() => UpgradeRange());
@@ -34,16 +34,56 @@ public class Node : MonoBehaviour
         {
             TowerLoaded.getRange();
         }
+
+        if (oldNode == this)
+        {
+            isClick = true;
+        }
+        else {
+            isClick =false ;
+        }
+
     }
+
+    //private void OnMouseDown()
+    //{
+    //    if (oldNode == null || oldNode != this)
+    //    {
+    //        oldNode = this;
+    //    }
+
+    //    if (TowerLoaded == null && isClick)
+    //    {
+    //        Panel_money.SetActive(true);
+
+    //        GetRectPositopn();
+    //        if (Money.instance.SelectedCard != null)
+    //        {
+    //            if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
+    //            {
+    //                TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
+    //                Money.instance.SelectedCard = null;
+    //                Panel_money.SetActive(false);
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Panel_Upgrade.SetActive(true);
+    //        checkRange = true;
+    //    }
+    //}
+
     public void meme()
     {
+        Debug.Log("dsada");
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
-        
-       if (TowerLoaded == null)
+
+        if (TowerLoaded == null )
         {
             Panel_money.SetActive(true);
-           
+
             GetRectPositopn();
             if (Money.instance.SelectedCard != null)
             {
