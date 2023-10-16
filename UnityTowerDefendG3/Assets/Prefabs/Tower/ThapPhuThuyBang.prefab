@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503728672205384178}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.62, y: -1.1, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd13f5aa85ecafb409f496558736215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 8654297987861813219, guid: 1dfab54289824f24dba72001738014a9, type: 3}
   rangeUpgrades:
   - amount: 3
     cost: 20

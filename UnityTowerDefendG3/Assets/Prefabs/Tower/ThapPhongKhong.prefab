@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd13f5aa85ecafb409f496558736215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 2972340601323551866, guid: 8da2a0bf19d02c546b8203f39affec9a, type: 3}
   rangeUpgrades:
   - amount: 3
     cost: 20

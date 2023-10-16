@@ -6,7 +6,7 @@ using UnityEngine;
 public class TowerUpgradeController : MonoBehaviour
 {
     private Tower theTower;
-    private Bullet bullet;
+    public Bullet bullet;
     public UpgradeStage[] rangeUpgrades;
     public int currentRangeUpgrade;
     public bool hasRangeUpgrade = true;
@@ -22,7 +22,6 @@ public class TowerUpgradeController : MonoBehaviour
     void Start()
     {
         theTower = GetComponent<Tower>();
-        bullet = GetComponent<Bullet>();
     }
 
     public void upgradeRange()
@@ -47,10 +46,11 @@ public class TowerUpgradeController : MonoBehaviour
 
     public void upgradeDamage()
     {
+        Debug.Log(bullet != null);
         if (bullet !=null)
         {
-            bullet.bulletDamage = damageUpgrades[currentDamageUpgrade].amount;
-            currentDamageUpgrade++;
+            Debug.Log(damageUpgrades[currentDamageUpgrade].amount);
+            bullet.bulletDamage = damageUpgrades[currentDamageUpgrade++].amount;
             if (currentDamageUpgrade >= damageUpgrades.Length)
             {
                 hasDamageUpgrade = false;

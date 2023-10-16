@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
     public static Node oldNode;
     private bool isClick = false;
     //  public RectTransform rectTransform;
-    //  public TextMeshProUGUI upRangeText, upFirerateText;
+    public TextMeshProUGUI textWarning;
     public Tower TowerLoaded { get; set; }
     private bool checkRange = true;
     private void Start()
@@ -147,7 +147,7 @@ public class Node : MonoBehaviour
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
             if (upgrader.hasRangeUpgrade)
             {
-                //     upRangeText.text = "Upgrade range( " + upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost + " )";
+                //     textWarning.text = "Upgrade range( " + upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost + " )";
                 if (Money.instance.SpendMoney(upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost))
                 {
                     upgrader.upgradeRange();
@@ -155,8 +155,7 @@ public class Node : MonoBehaviour
             }
             else
             {
-                //  upRangeText.text = "max";
-              
+                showMessage("Max Upgrade RANGE");
             }
         }
     }
@@ -166,10 +165,10 @@ public class Node : MonoBehaviour
         if (TowerLoaded != null)
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
-
+            Debug.Log("abcd");
             if (upgrader.hasFirerateUpgrade)
             {
-                //   upFirerateText.text = "Upgrade firerate( " + upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost + " )";
+                //   textWarning.text = "Upgrade firerate( " + upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost + " )";
                 if (Money.instance.SpendMoney(upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost))
                 {
                     upgrader.upgradeFirerate();
@@ -178,7 +177,7 @@ public class Node : MonoBehaviour
             }
             else
             {
-                //  upFirerateText.text = "max";
+               showMessage("Max Upgrade FIRERATE");
             }
         }
     }
@@ -187,18 +186,30 @@ public class Node : MonoBehaviour
         if (TowerLoaded != null )
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
-
+            Debug.Log("abcd");
             if (upgrader.hasDamageUpgrade)
             {
-                if (Money.instance.SpendMoney(upgrader.damageUpgrades[upgrader.currentDamageUpgrade].cost))
+                var money = Money.instance.SpendMoney(upgrader.damageUpgrades[upgrader.currentDamageUpgrade].cost);
+                Debug.Log(money);
+                if (money)
                 {
                     upgrader.upgradeDamage();
-                  
                 }
             }
             else
             {
+                showMessage("Max Upgrade Damage");
             }
         }
+    }
+    private void ShowWarningAndDelay()
+    {
+        textWarning.text = "";
+    }
+
+    private void showMessage(string message)
+    {
+        textWarning.SetText(message);
+        Invoke("ShowWarningAndDelay", 2);
     }
 }
