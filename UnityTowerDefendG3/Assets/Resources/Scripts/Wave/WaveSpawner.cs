@@ -63,29 +63,9 @@ public class WaveSpawner : MonoBehaviour
             wave.enemyUnits[indexEnemy].quantity -= 1;
             if(wave.enemyUnits[indexEnemy].quantity == 0)
             wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);
-
             yield return new WaitForSeconds(timeRandom);
         }
 
-
-        //foreach (var enemyUnit in wave.enemyUnits)
-        //{
-        //    for (int i = 0; i < enemyUnit.quantity; i++)
-        //    {
-        //        Instantiate(enemyUnit.enemy, spawnPoint.position, spawnPoint.rotation);
-
-        //        // Cập nhật số lượng quái vật còn lại ngay sau khi một quái vật mới xuất hiện
-        //        //;
-
-               
-        //    }
-        //}
-
-        // Đợi cho đến khi tất cả quái vật đã bị tiêu diệt trước khi chuyển sang wave tiếp theo
-        //while (CountActiveEnemies() > 0)
-        //{
-        //    yield return null;
-        //}
     }
 
     private void UpdateWaveInfo(int waveNumber)
