@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6b7a348a5cb2642b42de76ac48141d, type: 3}
   m_Name: Burn Ability
   m_EditorClassIdentifier: 
-  cooldownTime: 1
+  cooldownTime: 30
   duration: 5
   damagePercent: 0.5

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c43c3435a198e449d3f8241a8dd224, type: 3}
   m_Name: Stunned Ability
   m_EditorClassIdentifier: 
-  cooldownTime: 2
+  cooldownTime: 60
   duration: 5

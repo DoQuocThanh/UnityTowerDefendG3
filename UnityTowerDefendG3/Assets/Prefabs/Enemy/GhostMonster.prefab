@@ -184,9 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
-  enemyHeath: 10
-  moneyOnDeath: 2
+  moveSpeed: 1.5
+  enemyHeath: 20
+  moneyOnDeath: 5
   animator: {fileID: 4401437553319069933}
   enemyHeathSlider: {fileID: 7050833159768421039}
   stateIcon: {fileID: 4564620865702678167}

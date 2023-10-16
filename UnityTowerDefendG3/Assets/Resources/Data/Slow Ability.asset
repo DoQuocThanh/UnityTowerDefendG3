@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b926d3e8551d54c4ca38147112301668, type: 3}
   m_Name: Slow Ability
   m_EditorClassIdentifier: 
-  cooldownTime: 2
+  cooldownTime: 45
   duration: 10
   slowPercent: 0.7

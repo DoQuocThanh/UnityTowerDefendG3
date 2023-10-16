@@ -21,11 +21,11 @@ public class WaveSpawner : MonoBehaviour
         public List<EnemyUnit> enemyUnits;
         public float timeBetweenSpawnsMin;
         public float timeBetweenSpawnsMax;
+        public float timeBeforeEnemySpawn;
     }
 
     public Wave[] waves;
     public Transform spawnPoint;
-    public float timeBetweenWaves;
     public TextMeshProUGUI waveText;        // Text để hiển thị sóng
     public TextMeshProUGUI remainEnemyText;   // Text mới để hiển thị số lượng quái vật còn lại
 
@@ -41,9 +41,10 @@ public class WaveSpawner : MonoBehaviour
     {
         for (; currentWave < waves.Length; currentWave++)
         {
+            yield return new WaitForSeconds(waves[currentWave].timeBeforeEnemySpawn);
             UpdateWaveInfo(currentWave + 1);
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
-            yield return new WaitForSeconds(timeBetweenWaves);
+            
         }
     }
 
