@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f736304a7a64f842ad0757bd05c860d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 3
+  target: 2
   firerate: 1
   isHuman: 1
   range: {fileID: 4133604242072680857}

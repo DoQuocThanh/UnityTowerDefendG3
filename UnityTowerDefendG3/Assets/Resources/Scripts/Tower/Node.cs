@@ -82,10 +82,14 @@ public class Node : MonoBehaviour
 
     public void meme()
     {
+        if (oldNode == null || oldNode != this)
+        {
+            oldNode = this;
+            isClick = true;
+        }
         Debug.Log("dsada");
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
-        Debug.Log("meme");
         if (TowerLoaded == null)
         {
             Panel_money.SetActive(true);
@@ -119,7 +123,7 @@ public class Node : MonoBehaviour
 
     public void CloseTowerUpgradePanel()
     {
-        if (TowerLoaded != null)
+        if (TowerLoaded != null && isClick)
         {
             Panel_money.SetActive(false);
             Panel_Upgrade.SetActive(false);
@@ -131,7 +135,7 @@ public class Node : MonoBehaviour
 
     public void SellTowerUpgradePanel()
     {
-        if (TowerLoaded != null )
+        if (TowerLoaded != null && isClick)
         {
             Money.instance.SpendMoney(-5);
             Destroy(TowerLoaded.gameObject);
@@ -142,7 +146,7 @@ public class Node : MonoBehaviour
     }
     public void UpgradeRange()
     {
-        if (TowerLoaded != null)
+        if (TowerLoaded != null &&isClick)
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
             if (upgrader.hasRangeUpgrade)
@@ -162,7 +166,7 @@ public class Node : MonoBehaviour
 
     public void UpgradeFirerate()
     {
-        if (TowerLoaded != null)
+        if (TowerLoaded != null && isClick)
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
             Debug.Log("abcd");
@@ -183,7 +187,7 @@ public class Node : MonoBehaviour
     }
     public void UpgradeDamage()
     {
-        if (TowerLoaded != null )
+        if (TowerLoaded != null && isClick)
         {
             TowerUpgradeController upgrader = TowerLoaded.upgrader;
             Debug.Log("abcd");
