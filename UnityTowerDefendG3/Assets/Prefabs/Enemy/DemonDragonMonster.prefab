@@ -125,9 +125,9 @@ GameObject:
   - component: {fileID: 4658408604201023264}
   - component: {fileID: 8449861379280819381}
   - component: {fileID: 6266332390659112594}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DemonDragonMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

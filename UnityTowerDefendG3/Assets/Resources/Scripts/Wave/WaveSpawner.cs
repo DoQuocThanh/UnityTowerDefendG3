@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using static WaveSpawner;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -16,7 +19,8 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public List<EnemyUnit> enemyUnits;
-        public float timeBetweenSpawns;
+        public float timeBetweenSpawnsMin;
+        public float timeBetweenSpawnsMax;
     }
 
     public Wave[] waves;
@@ -42,26 +46,46 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        UpdateRemainingEnemies();
+    }
+
     private IEnumerator SpawnWave(Wave wave)
     {
-        foreach (var enemyUnit in wave.enemyUnits)
-        {
-            for (int i = 0; i < enemyUnit.quantity; i++)
-            {
-                Instantiate(enemyUnit.enemy, spawnPoint.position, spawnPoint.rotation);
 
-                // Cập nhật số lượng quái vật còn lại ngay sau khi một quái vật mới xuất hiện
-                UpdateRemainingEnemies(CountActiveEnemies());
+        int indexEnemy = 0;
+        float timeRandom = 0;
+        while (wave.enemyUnits.Sum(x => x.quantity) > 0) {
+            indexEnemy = Random.Range(0, wave.enemyUnits.Count());
+            timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);
+            Instantiate(wave.enemyUnits[indexEnemy].enemy, spawnPoint.position, spawnPoint.rotation);
+            wave.enemyUnits[indexEnemy].quantity -= 1;
+            if(wave.enemyUnits[indexEnemy].quantity == 0)
+            wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);
 
-                yield return new WaitForSeconds(wave.timeBetweenSpawns);
-            }
+            yield return new WaitForSeconds(timeRandom);
         }
+
+
+        //foreach (var enemyUnit in wave.enemyUnits)
+        //{
+        //    for (int i = 0; i < enemyUnit.quantity; i++)
+        //    {
+        //        Instantiate(enemyUnit.enemy, spawnPoint.position, spawnPoint.rotation);
+
+        //        // Cập nhật số lượng quái vật còn lại ngay sau khi một quái vật mới xuất hiện
+        //        //;
+
+               
+        //    }
+        //}
 
         // Đợi cho đến khi tất cả quái vật đã bị tiêu diệt trước khi chuyển sang wave tiếp theo
-        while (CountActiveEnemies() > 0)
-        {
-            yield return null;
-        }
+        //while (CountActiveEnemies() > 0)
+        //{
+        //    yield return null;
+        //}
     }
 
     private void UpdateWaveInfo(int waveNumber)
@@ -69,12 +93,12 @@ public class WaveSpawner : MonoBehaviour
         waveText.text = "Wave: " + waveNumber;
     }
 
-    private void UpdateRemainingEnemies(int remaining)
+    public  void UpdateRemainingEnemies()
     {
-        remainEnemyText.text = "Quái vật: " + remaining;
+        remainEnemyText.text = "Quái vật: " + CountActiveEnemies();
     }
 
-    private int CountActiveEnemies()
+    public  int CountActiveEnemies()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
