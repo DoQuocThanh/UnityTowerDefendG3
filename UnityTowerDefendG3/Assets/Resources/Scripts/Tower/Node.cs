@@ -85,7 +85,7 @@ public class Node : MonoBehaviour
         Debug.Log("dsada");
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
-
+        Debug.Log("meme");
         if (TowerLoaded == null)
         {
             Panel_money.SetActive(true);
