@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firerateBullet: 10
   bulletDamage: 2
-  bulletSnow: 0.1
+  bulletSnow: 0.2
   bulletSnowTime: 2
   damagePercentFire: 0
   bulletFireTime: 0

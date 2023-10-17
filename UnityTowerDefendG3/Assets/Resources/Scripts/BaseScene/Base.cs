@@ -28,13 +28,16 @@ public class Base : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+
         currentHeath -= damage;
         if (currentHeath <= 0)
         {
             currentHeath = 0;
             gameObject.SetActive(false);
+
         }
         heathSlider.value = currentHeath;
         currentHeathText.text = currentHeath.ToString() + "/" + totalHeath.ToString();
+
     }
 }

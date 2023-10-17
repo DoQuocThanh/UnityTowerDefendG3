@@ -16,6 +16,4 @@ MonoBehaviour:
   towerPrefab: {fileID: -8663013844910115249, guid: 5444819aaf6a3a2419a8f4939ef8cf68, type: 3}
   Image: {fileID: 2066514339, guid: f1cde96add899334da331b5f05655b6a, type: 3}
   CoinImg: {fileID: 371018884, guid: 88a1b20106eccbd4cbb63ba6d28edb76, type: 3}
-  cost: 30
-  towerInforImg: {fileID: 0}
-  Projectile: {fileID: 0}
+  cost: 2

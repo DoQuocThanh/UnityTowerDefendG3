@@ -136,7 +136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.003, y: -1.997, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8935685814923688287}
@@ -205,7 +205,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.5
 --- !u!114 &44940405892145055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: 1
-  firerate: 1
+  firerate: 1.3
   isHuman: 1
   range: {fileID: 244605402178777206}
   circleCollider: {fileID: 0}
@@ -240,22 +240,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 426023294240058092, guid: 4ad1209cfa462e3488b05ae780568e44, type: 3}
   rangeUpgrades:
-  - amount: 3
-    cost: 20
-  - amount: 4
-    cost: 20
+  - amount: 1.7
+    cost: 6
+  - amount: 1.9
+    cost: 9
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
   firerateUpgrades:
-  - amount: 0.5
-    cost: 20
-  - amount: 0.25
-    cost: 30
+  - amount: 1.1
+    cost: 6
+  - amount: 0.9
+    cost: 9
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
   damageUpgrades:
-  - amount: 100
-    cost: 50
+  - amount: 12
+    cost: 6
+  - amount: 18
+    cost: 9
   currentDamageUpgrade: 0
   hasDamageUpgrade: 1
 --- !u!1 &7081014771653011468

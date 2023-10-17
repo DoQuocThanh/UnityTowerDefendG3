@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static WaveSpawner;
 
 public class WaveSpawner : MonoBehaviour
@@ -22,17 +23,20 @@ public class WaveSpawner : MonoBehaviour
         public float timeBetweenSpawnsMin;
         public float timeBetweenSpawnsMax;
         public float timeBeforeEnemySpawn;
+
     }
 
     public Wave[] waves;
     public Transform spawnPoint;
     public TextMeshProUGUI waveText;        // Text để hiển thị sóng
     public TextMeshProUGUI remainEnemyText;   // Text mới để hiển thị số lượng quái vật còn lại
-
+    
+    private Base theBase;
     private int currentWave = 0;
 
     private void Start()
     {
+        theBase = FindObjectOfType<Base>();
         //AudioManeger.Instance.PlayMusic("Theme");
         StartCoroutine(SpawnWaves());
     }
@@ -41,11 +45,19 @@ public class WaveSpawner : MonoBehaviour
     {
         for (; currentWave < waves.Length; currentWave++)
         {
-            yield return new WaitForSeconds(waves[currentWave].timeBeforeEnemySpawn);
-            UpdateWaveInfo(currentWave + 1);
-            yield return StartCoroutine(SpawnWave(waves[currentWave]));
-            
+
+            if (theBase != null && theBase.currentHeath > 0)
+            {
+                yield return new WaitForSeconds(waves[currentWave].timeBeforeEnemySpawn);
+                UpdateWaveInfo(currentWave + 1);
+                yield return StartCoroutine(SpawnWave(waves[currentWave]));
+            }
+            else {
+
+                break;
+            }
         }
+
     }
 
     private void Update()
@@ -55,18 +67,23 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator SpawnWave(Wave wave)
     {
+        if (theBase != null && theBase.currentHeath > 0)
+        {
 
-        int indexEnemy = 0;
-        float timeRandom = 0;
-        while (wave.enemyUnits.Sum(x => x.quantity) > 0) {
-            indexEnemy = Random.Range(0, wave.enemyUnits.Count());
-            timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);
-            Instantiate(wave.enemyUnits[indexEnemy].enemy, spawnPoint.position, spawnPoint.rotation);
-            wave.enemyUnits[indexEnemy].quantity -= 1;
-            if(wave.enemyUnits[indexEnemy].quantity == 0)
-            wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);
-            yield return new WaitForSeconds(timeRandom);
+            int indexEnemy = 0;
+            float timeRandom = 0;
+            while (wave.enemyUnits.Sum(x => x.quantity) > 0)
+            {
+                indexEnemy = Random.Range(0, wave.enemyUnits.Count());
+                timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);
+                Instantiate(wave.enemyUnits[indexEnemy].enemy, spawnPoint.position, spawnPoint.rotation);
+                wave.enemyUnits[indexEnemy].quantity -= 1;
+                if (wave.enemyUnits[indexEnemy].quantity == 0)
+                    wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);
+                yield return new WaitForSeconds(timeRandom);
+            }
         }
+      
 
     }
 

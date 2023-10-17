@@ -22,6 +22,7 @@ public class TowerUpgradeController : MonoBehaviour
     void Start()
     {
         theTower = GetComponent<Tower>();
+        theTower.dmgUpdate = bullet.bulletDamage;
     }
 
     public void upgradeRange()
@@ -50,7 +51,8 @@ public class TowerUpgradeController : MonoBehaviour
         if (bullet !=null)
         {
             Debug.Log(damageUpgrades[currentDamageUpgrade].amount);
-            bullet.bulletDamage = damageUpgrades[currentDamageUpgrade++].amount;
+            theTower.dmgUpdate = damageUpgrades[currentDamageUpgrade++].amount;
+            //bullet.bulletDamage = damageUpgrades[currentDamageUpgrade++].amount;
             if (currentDamageUpgrade >= damageUpgrades.Length)
             {
                 hasDamageUpgrade = false;

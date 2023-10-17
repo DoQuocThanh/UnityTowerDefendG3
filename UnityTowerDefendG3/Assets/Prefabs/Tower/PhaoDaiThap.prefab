@@ -204,7 +204,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 2.5
 --- !u!114 &6186412941736446451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,22 +239,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8098319842540730150, guid: fdd7569b69fd82b48828c6909156cebb, type: 3}
   rangeUpgrades:
+  - amount: 2.7
+    cost: 10
   - amount: 3
-    cost: 20
-  - amount: 4
-    cost: 30
+    cost: 15
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
   firerateUpgrades:
-  - amount: 2.5
-    cost: 20
-  - amount: 2
-    cost: 30
+  - amount: 2.8
+    cost: 10
+  - amount: 2.6
+    cost: 15
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
   damageUpgrades:
-  - amount: 100
-    cost: 50
+  - amount: 10
+    cost: 10
+  - amount: 15
+    cost: 15
   currentDamageUpgrade: 0
   hasDamageUpgrade: 1
 --- !u!1001 &7608893146297892991

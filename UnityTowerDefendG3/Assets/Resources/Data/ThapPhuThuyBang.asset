@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: ThapPhuThuyBang
   m_EditorClassIdentifier: 
   ID: 
-  towerPrefab: {fileID: 1746903559708921324, guid: a61b72ddd6a203e4da8bbdc9dbde68c1, type: 3}
+  towerPrefab: {fileID: 5111110698240437939, guid: a61b72ddd6a203e4da8bbdc9dbde68c1, type: 3}
   Image: {fileID: -268049726, guid: 7d1121c3a2eb864469f072f70887efc5, type: 3}
   CoinImg: {fileID: 371018884, guid: 88a1b20106eccbd4cbb63ba6d28edb76, type: 3}
-  cost: 10
-  towerInforImg: {fileID: 0}
-  Projectile: {fileID: 0}
+  cost: 3
