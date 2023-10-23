@@ -39,6 +39,7 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public TowerUpgradeController upgrader;
     private Base theBase;
+    public float dmgUpdate;
 
     private void Awake()
     {
@@ -64,9 +65,6 @@ public class Tower : MonoBehaviour
                 ShotAnimator(true);
             }
         }
-
-       
-            
     }
 
     public void getRange()
@@ -158,6 +156,7 @@ public class Tower : MonoBehaviour
             checkCounter = firerate;
             GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
             Bullet bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.bulletDamage = dmgUpdate;
             bulletScript.SetTarget(enemyController);
         }
 

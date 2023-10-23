@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (theBase.currentHeath > 0)
+        if (theBase != null &&  theBase.currentHeath > 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
             moveSpeed * Time.deltaTime);
@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
                 if (currentPoint >= thePath.points.Length)
                 {
                     theBase.takeDamage(enemyHeath);
-                    gameObject.SetActive(false);
+                    Destroy(gameObject);
                 }
             }
         }

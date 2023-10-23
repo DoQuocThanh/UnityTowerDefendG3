@@ -6,6 +6,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Node : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class Node : MonoBehaviour
     public TextMeshProUGUI textWarning;
     public Tower TowerLoaded { get; set; }
     private bool checkRange = true;
+    private GameObject selectedPoint;
+
     private void Start()
     {
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
+        selectedPoint = GameObject.FindGameObjectsWithTag("SelectedPoint").FirstOrDefault();
         towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
         towerInfo.transform.Find("Button - Sell").GetComponent<Button>().onClick.AddListener(() => SellTowerUpgradePanel());
         towerInfo.transform.Find("Button - UpgradeRange").GetComponent<Button>().onClick.AddListener(() => UpgradeRange());
@@ -39,46 +43,66 @@ public class Node : MonoBehaviour
         if (oldNode == this)
         {
             isClick = true;
+
         }
-        else {
-            isClick =false ;
+        else
+        {
+            isClick = false;
+        }
+        if (TowerLoaded == null)
+        {
+            setTower();
+            Debug.Log("Wrong");
+        }
+    }
+
+    public void setSelectedPoint() {
+        selectedPoint.SetActive(true);
+        if (selectedPoint != null) {
+            selectedPoint.transform.position = this.transform.position + new Vector3(0,0.5f,0);
+        }
+    }
+
+    public void setTower() {
+        if (Money.instance.SelectedCard != null && isClick )
+        {
+            if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
+            {
+               
+                TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
+                Money.instance.SelectedCard = null;
+                Panel_money.SetActive(false);
+                selectedPoint.SetActive(false);
+            }
+            Money.instance.SelectedCard = null;
+        }
+    }
+
+    public void SelectTarget(int val)
+    {
+
+        if (val == 1)
+        {
+            FindObjectOfType<Tower>().target = Target.First;
+        }
+        else
+         if (val == 2)
+        {
+            FindObjectOfType<Tower>().target = Target.Last;
+        }
+        else
+         if (val == 3)
+        {
+            FindObjectOfType<Tower>().target = Target.StrongestEnememies;
+        }
+        else
+         if (val == 4)
+        {
+            FindObjectOfType<Tower>().target = Target.WeakestEnememies;
         }
 
     }
 
-    //private void OnMouseDown()
-    //{
-    //    if (oldNode == null || oldNode != this)
-    //    {
-    //        oldNode = this;
-    //    }
-
-    //    Debug.Log("dsada");
-    //    Panel_money.SetActive(false);
-    //    Panel_Upgrade.SetActive(false);
-
-    //    if (TowerLoaded == null && isClick)
-    //    {
-    //        Panel_money.SetActive(true);
-
-    //        GetRectPositopn();
-    //        if (Money.instance.SelectedCard != null)
-    //        {
-    //            if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
-    //            {
-    //                TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
-    //                Money.instance.SelectedCard = null;
-    //                Panel_money.SetActive(false);
-    //            }
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        Panel_Upgrade.SetActive(true);
-    //        checkRange = true;
-    //    }
-    //}
 
     public void meme()
     {
@@ -87,23 +111,25 @@ public class Node : MonoBehaviour
             oldNode = this;
             isClick = true;
         }
-        Debug.Log("dsada");
+        setSelectedPoint();
         Panel_money.SetActive(false);
         Panel_Upgrade.SetActive(false);
         if (TowerLoaded == null)
         {
+            
             Panel_money.SetActive(true);
-
             GetRectPositopn();
-            if (Money.instance.SelectedCard != null)
-            {
-                if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
-                {
-                    TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
-                    Money.instance.SelectedCard = null;
-                    Panel_money.SetActive(false);
-                }
-            }
+            //if (Money.instance.SelectedCard != null)
+            //{
+            //    if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
+            //    {
+            //        TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
+            //        Money.instance.SelectedCard = null;
+            //        Panel_money.SetActive(false);
+            //        selectedPoint.SetActive(false);
+
+            //    }
+            //}
         }
         else
         {
@@ -208,12 +234,14 @@ public class Node : MonoBehaviour
     }
     private void ShowWarningAndDelay()
     {
-        textWarning.text = "";
+        textWarning.gameObject.SetActive(false);
     }
 
     private void showMessage(string message)
     {
+        textWarning.gameObject.SetActive(true);
         textWarning.SetText(message);
         Invoke("ShowWarningAndDelay", 2);
+        
     }
 }

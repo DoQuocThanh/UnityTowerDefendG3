@@ -121,8 +121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f61cabbf7f2ec49acb429151296d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerateBullet: 10
-  bulletDamage: 5
+  firerateBullet: 5
+  bulletDamage: 1
+  bulletSnow: 0
+  bulletSnowTime: 0
+  damagePercentFire: 0
+  bulletFireTime: 0
+  rangeBoom: 3
+  isBoom: 0
+  boomAnimation: {fileID: 0}
+  timeAnimation: 0.1
 --- !u!58 &4393015899107039871
 CircleCollider2D:
   m_ObjectHideFlags: 0

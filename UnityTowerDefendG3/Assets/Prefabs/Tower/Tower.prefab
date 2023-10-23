@@ -247,11 +247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd13f5aa85ecafb409f496558736215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
   rangeUpgrades:
   - amount: 2.5
-    cost: 20
+    cost: 5
   - amount: 3.5
-    cost: 40
+    cost: 7
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
   firerateUpgrades:
@@ -262,6 +263,8 @@ MonoBehaviour:
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
   damageUpgrades:
+  - amount: 100
+    cost: 50
   - amount: 100
     cost: 50
   currentDamageUpgrade: 0

@@ -185,6 +185,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firerateBullet: 10
   bulletDamage: 5
+  bulletSnow: 0
+  bulletSnowTime: 0
+  damagePercentFire: 0
+  bulletFireTime: 0
   rangeBoom: 3
   isBoom: 0
   boomAnimation: {fileID: 0}
