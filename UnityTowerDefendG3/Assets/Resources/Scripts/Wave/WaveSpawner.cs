@@ -30,14 +30,14 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public TextMeshProUGUI waveText;        // Text để hiển thị sóng
     public TextMeshProUGUI remainEnemyText;   // Text mới để hiển thị số lượng quái vật còn lại
-    
+
     private Base theBase;
     private int currentWave = 0;
 
     private void Start()
     {
         theBase = FindObjectOfType<Base>();
-        //AudioManeger.Instance.PlayMusic("Theme");
+        AudioManeger.Instance.PlayMusic("Theme");
         StartCoroutine(SpawnWaves());
     }
 
@@ -52,7 +52,8 @@ public class WaveSpawner : MonoBehaviour
                 UpdateWaveInfo(currentWave + 1);
                 yield return StartCoroutine(SpawnWave(waves[currentWave]));
             }
-            else {
+            else
+            {
 
                 break;
             }
@@ -83,7 +84,7 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(timeRandom);
             }
         }
-      
+
 
     }
 
@@ -92,12 +93,12 @@ public class WaveSpawner : MonoBehaviour
         waveText.text = "Wave: " + waveNumber;
     }
 
-    public  void UpdateRemainingEnemies()
+    public void UpdateRemainingEnemies()
     {
         remainEnemyText.text = "Quái vật: " + CountActiveEnemies();
     }
 
-    public  int CountActiveEnemies()
+    public int CountActiveEnemies()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }

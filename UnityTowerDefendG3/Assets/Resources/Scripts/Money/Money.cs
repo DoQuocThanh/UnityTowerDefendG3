@@ -20,6 +20,9 @@ public class Money : MonoBehaviour
     public TextMeshProUGUI spendMoneyTmp;*/
 
     public MoneyCard SelectedCard{ get;set;}
+
+
+
     private void Awake()
     {
         instance = this;
@@ -57,12 +60,20 @@ public class Money : MonoBehaviour
         {
             spent = true;
             currentMoney -= amountToSpend;
-       //     spendMoneyTmp.text = "- " + amountToSpend.ToString();
-        }else
+     
+
+            //     spendMoneyTmp.text = "- " + amountToSpend.ToString();
+        }
+        else
         {
-            textWarningTmp.text = "Not enough gold";
-            // StartCoroutine(ShowWarningAndDelay());
-            Invoke("ShowWarningAndDelay", 2);
+          
+                textWarningTmp.gameObject.SetActive(true);
+                textWarningTmp.text = "Not enough gold";
+                // StartCoroutine(ShowWarningAndDelay());
+                Invoke("ShowWarningAndDelay", 2);
+       
+            
+           
         }
 
         return spent;
@@ -75,6 +86,6 @@ public class Money : MonoBehaviour
     }*/
    private void ShowWarningAndDelay()
     {
-        textWarningTmp.text = "";
+        textWarningTmp.gameObject.SetActive(false);
     }
 }

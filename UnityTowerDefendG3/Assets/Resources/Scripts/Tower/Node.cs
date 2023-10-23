@@ -43,11 +43,17 @@ public class Node : MonoBehaviour
         if (oldNode == this)
         {
             isClick = true;
+
         }
-        else {
-            isClick =false ;
+        else
+        {
+            isClick = false;
         }
-        setTower();     
+        if (TowerLoaded == null)
+        {
+            setTower();
+            Debug.Log("Wrong");
+        }
     }
 
     public void setSelectedPoint() {
@@ -58,16 +64,43 @@ public class Node : MonoBehaviour
     }
 
     public void setTower() {
-        if (Money.instance.SelectedCard != null && isClick)
+        if (Money.instance.SelectedCard != null && isClick )
         {
             if (Money.instance.SpendMoney(Money.instance.SelectedCard.towerItem.cost))
             {
+               
                 TowerLoaded = Instantiate(Money.instance.SelectedCard.towerItem.towerPrefab, transform.position, Quaternion.identity, this.transform);
                 Money.instance.SelectedCard = null;
                 Panel_money.SetActive(false);
                 selectedPoint.SetActive(false);
             }
+            Money.instance.SelectedCard = null;
         }
+    }
+
+    public void SelectTarget(int val)
+    {
+
+        if (val == 1)
+        {
+            FindObjectOfType<Tower>().target = Target.First;
+        }
+        else
+         if (val == 2)
+        {
+            FindObjectOfType<Tower>().target = Target.Last;
+        }
+        else
+         if (val == 3)
+        {
+            FindObjectOfType<Tower>().target = Target.StrongestEnememies;
+        }
+        else
+         if (val == 4)
+        {
+            FindObjectOfType<Tower>().target = Target.WeakestEnememies;
+        }
+
     }
 
 
@@ -83,6 +116,7 @@ public class Node : MonoBehaviour
         Panel_Upgrade.SetActive(false);
         if (TowerLoaded == null)
         {
+            
             Panel_money.SetActive(true);
             GetRectPositopn();
             //if (Money.instance.SelectedCard != null)
@@ -200,12 +234,14 @@ public class Node : MonoBehaviour
     }
     private void ShowWarningAndDelay()
     {
-        textWarning.text = "";
+        textWarning.gameObject.SetActive(false);
     }
 
     private void showMessage(string message)
     {
+        textWarning.gameObject.SetActive(true);
         textWarning.SetText(message);
         Invoke("ShowWarningAndDelay", 2);
+        
     }
 }
