@@ -30,12 +30,17 @@ public class WaveSpawner : MonoBehaviour
     public TextMeshProUGUI remainEnemyText;   // Text mới để hiển thị số lượng quái vật còn lại
     private int currentWave = 0;
 
+    public Base Tower;
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
     private void Start()
     {
         //AudioManeger.Instance.PlayMusic("Theme");
-    
-            StartCoroutine(SpawnWaves());
-      
+        Tower = FindObjectOfType<Base>();
+
+        StartCoroutine(SpawnWaves());
+        defeatPanel.SetActive(false);
+        victoryPanel.SetActive(false);
     }
 
     private IEnumerator SpawnWaves()
@@ -53,8 +58,23 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         UpdateRemainingEnemies();
-    }
 
+        //win 
+        if (currentWave >= waves.Length && CountActiveEnemies() == 0)
+        {
+            victoryPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+            //lose
+            if (Tower.currentHeath <= 0)
+        {
+            Debug.Log("destroy");
+            defeatPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+    
+   
     private IEnumerator SpawnWave(Wave wave)
     {
        
