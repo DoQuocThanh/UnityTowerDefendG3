@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     public float enemyHeath;
     public int moneyOnDeath = 50;
+    public bool canFly;
 
     [Header("References")]
     public Animator animator;
@@ -44,6 +45,25 @@ public class EnemyController : MonoBehaviour
     }
     void Start()
     {
+        if (canFly)//random start's position
+        {
+            Camera mainCamera = Camera.main;
+
+            float cameraLeft = mainCamera.transform.position.x - mainCamera.orthographicSize * mainCamera.aspect;
+            float cameraRight = mainCamera.transform.position.x + mainCamera.orthographicSize * mainCamera.aspect;
+
+            // Generate a random X position between cameraLeft and cameraRight
+            float randomX = Random.Range(cameraLeft, cameraRight);
+
+            // Calculate the Y position at the bottom of the camera view
+            float cameraBottom = mainCamera.transform.position.y - mainCamera.orthographicSize;
+
+            // Create a Vector3 for the random position at the bottom
+            Vector3 randomPosition = new Vector3(randomX, cameraBottom, 0f);
+
+            gameObject.transform.position = randomPosition;
+        }
+        
         thePath = FindObjectOfType<Path>();
         theBase = FindObjectOfType<Base>();
         enemyHeathSlider.maxValue = enemyHeath;
@@ -57,6 +77,10 @@ public class EnemyController : MonoBehaviour
     {
         if (theBase != null &&  theBase.currentHeath > 0)
         {
+            if (canFly)
+            {
+                currentPoint = thePath.points.Length - 1;
+            }
             transform.position = Vector2.MoveTowards(transform.position, thePath.points[currentPoint].position,
             moveSpeed * Time.deltaTime);
             //animation of move
