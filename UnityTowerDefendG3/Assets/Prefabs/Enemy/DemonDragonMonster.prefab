@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0.4
   enemyHeath: 100
   moneyOnDeath: 20
   animator: {fileID: 3318133261957990108}

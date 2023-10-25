@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: 1
-  firerate: 2
+  firerate: 2.5
   isHuman: 1
   range: {fileID: 7593334358866985455}
   circleCollider: {fileID: 0}
@@ -81,16 +81,16 @@ MonoBehaviour:
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
   firerateUpgrades:
-  - amount: 0.5
+  - amount: 2.3
     cost: 6
-  - amount: 0.25
+  - amount: 2
     cost: 9
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
   damageUpgrades:
-  - amount: 4
+  - amount: 3
     cost: 6
-  - amount: 8
+  - amount: 5
     cost: 9
   currentDamageUpgrade: 0
   hasDamageUpgrade: 1

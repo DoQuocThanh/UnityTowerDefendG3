@@ -29,8 +29,11 @@ public class Bullet : MonoBehaviour
     //FixedUpdate is call once per 0.02s(xu li vat li) 
     private void FixedUpdate()
     {
-        if (target == null) return;
-       
+        if (target == null) {
+            Destroy(gameObject);
+            return;
+        } 
+
         float angle = Vector3.SignedAngle(transform.up, target.transform.position - transform.position, transform.forward);
         transform.Rotate(0f, 0f, angle);
 

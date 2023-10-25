@@ -72,7 +72,6 @@ public class AbilityHolder : MonoBehaviour
                     state = AbilityState.ready;
 
                 }
-
                 break;
 
             case AbilityState.cooldown:
