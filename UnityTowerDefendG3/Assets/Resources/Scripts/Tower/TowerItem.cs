@@ -12,4 +12,5 @@ public class TowerItem : ScriptableObject
     public Sprite Image;
     public Sprite CoinImg;
     public int cost;
+    public int limitTower;
 }

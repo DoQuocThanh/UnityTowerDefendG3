@@ -65,6 +65,14 @@ public class Tower : MonoBehaviour
                 ShotAnimator(true);
             }
         }
+        if (TowerManager.Instance.selectedTower == this)
+        {
+            getRange();
+        }
+        else if (TowerManager.Instance.isPlacing == false)
+        {
+            removeRange();
+        }
     }
 
     public void getRange()
@@ -169,7 +177,10 @@ public class Tower : MonoBehaviour
         }
     }
 
-    
+    public void getTower()
+    {
+        TowerManager.Instance.selectedTower = this;
+    }
 
     /* private void OnDrawGizmos()
      {
