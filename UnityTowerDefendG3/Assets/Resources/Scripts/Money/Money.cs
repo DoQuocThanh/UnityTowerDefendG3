@@ -19,8 +19,6 @@ public class Money : MonoBehaviour
     /*public TextMeshProUGUI giveMoneyTmp;
     public TextMeshProUGUI spendMoneyTmp;*/
 
-    public MoneyCard SelectedCard{ get;set;}
-
 
 
     private void Awake()

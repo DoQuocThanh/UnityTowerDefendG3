@@ -10,7 +10,7 @@ using System.Linq;
 
 public class Node : MonoBehaviour
 {
-    public GameObject Panel_money;
+   /* public GameObject Panel_money;
     public GameObject Panel_Upgrade;
     public GameObject towerInfo;
 
@@ -243,5 +243,5 @@ public class Node : MonoBehaviour
         textWarning.SetText(message);
         Invoke("ShowWarningAndDelay", 2);
         
-    }
+    }*/
 }
