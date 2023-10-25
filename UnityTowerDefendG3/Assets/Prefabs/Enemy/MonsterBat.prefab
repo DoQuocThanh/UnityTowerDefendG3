@@ -297,6 +297,7 @@ MonoBehaviour:
   moveSpeed: 0.6
   enemyHeath: 20
   moneyOnDeath: 5
+  canFly: 1
   animator: {fileID: 6672236776421558829}
   enemyHeathSlider: {fileID: 5490713087900610146}
   stateIcon: {fileID: 7650839323957974408}

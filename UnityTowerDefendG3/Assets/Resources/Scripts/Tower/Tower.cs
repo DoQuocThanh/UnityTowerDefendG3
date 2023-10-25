@@ -30,6 +30,7 @@ public class Tower : MonoBehaviour
     private float checkCounter;
     [HideInInspector]
     public CircleCollider2D circleCollider;
+    public bool onlyAttackFlying;
 
     [Header("References")]
     public GameObject bulletPrefab;
@@ -115,15 +116,26 @@ public class Tower : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D objec)
     {
-       
-            if (objec.CompareTag(("Enemy")))
+
+        if (objec.CompareTag(("Enemy")))
+        {
+            EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
+            if (onlyAttackFlying)
             {
-                EnemyController enemy = objec.gameObject.GetComponent<EnemyController>();
-                if (enemy != null)
+                if (enemy != null && enemy.canFly)
                 {
                     eList.Add(enemy);
-                }
-            }      
+                }                                               
+            }
+            else
+            {
+                if (enemy != null && !enemy.canFly)
+                {
+                    eList.Add(enemy);
+                }                 
+            }
+
+        }
 
     }
 
@@ -166,6 +178,8 @@ public class Tower : MonoBehaviour
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.bulletDamage = dmgUpdate;
             bulletScript.SetTarget(enemyController);
+            if (onlyAttackFlying) 
+                bulletScript.SetAttackFlying();
         }
 
     }

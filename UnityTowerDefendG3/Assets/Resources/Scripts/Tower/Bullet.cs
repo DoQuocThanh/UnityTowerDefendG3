@@ -22,9 +22,15 @@ public class Bullet : MonoBehaviour
     public float timeAnimation = 0.1f;
 
     private EnemyController target;
+    private bool onlyAttackFlying;
     public void SetTarget(EnemyController _target)
     {
         target = _target;
+    }
+
+    public void SetAttackFlying()
+    {
+        onlyAttackFlying = true;
     }
     //FixedUpdate is call once per 0.02s(xu li vat li) 
     private void FixedUpdate()
@@ -62,6 +68,9 @@ public class Bullet : MonoBehaviour
 
 
     private void DamageEnemy(Collider2D enemy) {
+        if ((onlyAttackFlying && !enemy.gameObject.GetComponent<EnemyController>().canFly)
+            || (!onlyAttackFlying && enemy.gameObject.GetComponent<EnemyController>().canFly))
+            return;
         if (enemy.CompareTag(("Enemy")))
         {
             if (isBoom)
@@ -74,7 +83,7 @@ public class Bullet : MonoBehaviour
                 enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
             }           
         }
-        Destroy(gameObject);    
+        Destroy(gameObject);
     }
 
     private void DamageBoom(Vector3 position) {
