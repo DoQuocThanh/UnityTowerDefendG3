@@ -66,7 +66,8 @@ public class Tower : MonoBehaviour
                 ShotAnimator(true);
             }
         }
-        if (TowerManager.Instance.selectedTower == this)
+
+        if ( TowerManager.Instance.selectedTower == this)
         {
             getRange();
         }

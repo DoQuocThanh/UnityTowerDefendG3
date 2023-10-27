@@ -17,7 +17,9 @@ public class TowerManager : MonoBehaviour
     public GameObject selectedTowerEffect;
     private void Awake()    
     {
+        
         Instance = this;
+     
     }
     void Start()
     {
@@ -67,6 +69,7 @@ public class TowerManager : MonoBehaviour
     }
     public void SelectedTower(TowerItem towerBtn)
     {
+
         towerItem = towerBtn;
         isPlacing = true;
         Destroy(indicator.gameObject);
