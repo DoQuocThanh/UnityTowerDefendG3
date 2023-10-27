@@ -17,7 +17,7 @@ public class VolumeSettings : MonoBehaviour
         if (PlayerPrefs.HasKey("musicVolume"))
         {
             LoadVolume();
-            Debug.Log(1);
+            Debug.Log(3);
         }
         else
         {
