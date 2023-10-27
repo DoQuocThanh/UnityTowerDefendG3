@@ -20,6 +20,7 @@ public class VolumeSettings : MonoBehaviour
         }
         else
         {
+            Debug.Log(2);
             SetMucsicVolume();
             SetSFXVolume();
         }
