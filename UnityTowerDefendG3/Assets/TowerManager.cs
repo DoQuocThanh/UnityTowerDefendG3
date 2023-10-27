@@ -47,7 +47,7 @@ public class TowerManager : MonoBehaviour
                     {
                         isPlacing = false;
                         Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
-                        
+                        indicator.gameObject.SetActive(false);
                     }
                 }
             }
@@ -73,10 +73,9 @@ public class TowerManager : MonoBehaviour
         towerItem = towerBtn;
         isPlacing = true;
         Destroy(indicator.gameObject);
-
         Tower placeTower = Instantiate(towerItem.towerPrefab);
+        placeTower.enabled = false;
         placeTower.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
-
         indicator = placeTower.transform;
         placeTower.getRange();
     }

@@ -323,9 +323,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: 2
   firerate: 1
-  isHuman: 0
+  isHuman: 1
   range: {fileID: 4728514939294950496}
   circleCollider: {fileID: 0}
+  onlyAttackFlying: 0
   bulletPrefab: {fileID: 3292853757173449004, guid: 3d2b8b607721f1640b7135e549ad412a, type: 3}
   firingPoint: {fileID: 3816171606392139792}
   upgrader: {fileID: 0}
