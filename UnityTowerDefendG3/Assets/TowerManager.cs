@@ -12,7 +12,8 @@ public class TowerManager : MonoBehaviour
     public bool isPlacing;
     [HideInInspector]
     private TowerItem towerItem;
-    public Tower selectedTower;
+	[HideInInspector]
+	public Tower selectedTower;
 
     public GameObject selectedTowerEffect;
     private void Awake()    
@@ -48,7 +49,8 @@ public class TowerManager : MonoBehaviour
                         isPlacing = false;
                         Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
                         indicator.gameObject.SetActive(false);
-                    }
+                       
+					}
                 }
             }
         }
@@ -78,5 +80,13 @@ public class TowerManager : MonoBehaviour
         placeTower.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
         indicator = placeTower.transform;
         placeTower.getRange();
+    }
+
+    public void moveTowerSelectionEffect()
+    {
+        if (selectedTower!=null) {
+            selectedTowerEffect.transform.position = selectedTower.transform.position;
+			selectedTowerEffect.SetActive(true);
+		}
     }
 }
