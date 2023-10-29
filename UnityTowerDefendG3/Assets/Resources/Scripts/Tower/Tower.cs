@@ -196,6 +196,7 @@ public class Tower : MonoBehaviour
     {
         TowerManager.Instance.selectedTower = this;
         TowerManager.Instance.moveTowerSelectionEffect();
+        TowerManager.Instance.meme();
     }
 
     /* private void OnDrawGizmos()

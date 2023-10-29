@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: 2
   firerate: 1
-  isHuman: 1
+  isHuman: 0
   range: {fileID: 4728514939294950496}
   circleCollider: {fileID: 0}
   onlyAttackFlying: 0
