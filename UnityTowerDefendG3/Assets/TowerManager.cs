@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TowerManager : MonoBehaviour
 {
 	public static TowerManager Instance;
-	
+
 	private int count = 0;
 	public LayerMask whatIsPlacement, whatIsObstacle;
 	public Transform indicator;
@@ -28,7 +28,6 @@ public class TowerManager : MonoBehaviour
 	[HideInInspector]
 	public Tower selectedTower;
 	[HideInInspector]
-	public List<Tower> TowerList = new List<Tower>();
 	private void Awake()
 	{
 
@@ -52,7 +51,7 @@ public class TowerManager : MonoBehaviour
 		{
 			indicator.position = GetGridPosition();
 			RaycastHit2D hit;
-			
+
 			if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 			{
 				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
@@ -61,7 +60,7 @@ public class TowerManager : MonoBehaviour
 			{
 				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
-				
+
 				if (Input.GetMouseButtonDown(0))
 				{
 					if (Money.instance.SpendMoney(towerItem.cost))
@@ -91,7 +90,7 @@ public class TowerManager : MonoBehaviour
 	}
 	public void SelectedTower(TowerItem towerBtn)
 	{
-		if (TowerList.Count >= 5)
+		if (count >= 5)
 		{
 			showMessage("limited tower");
 			return;
@@ -102,8 +101,7 @@ public class TowerManager : MonoBehaviour
 		Tower placeTower = Instantiate(towerItem.towerPrefab);
 		placeTower.enabled = false;
 		placeTower.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
-		TowerList.Add(placeTower);
-		
+		count++;
 		indicator = placeTower.transform;
 		placeTower.getRange();
 	}
@@ -148,6 +146,7 @@ public class TowerManager : MonoBehaviour
 		Panel_money.SetActive(false);
 
 		Panel_Upgrade.SetActive(true);
+		SetupPanel();
 	}
 
 	public void CloseTowerUpgradePanel()
@@ -161,31 +160,70 @@ public class TowerManager : MonoBehaviour
 	public void SellTowerUpgradePanel()
 	{
 		Money.instance.SpendMoney(-5);
+		count--;
 		Destroy(selectedTower.gameObject);
 		selectedTower = null;
 		Panel_Upgrade.SetActive(false);
 		Panel_money.SetActive(true);
 		selectedTowerEffect.SetActive(false);
 	}
-	public void UpgradeRange()
+	public void SetupPanel()
 	{
-		if (selectedTower!=null)
+		if (selectedTower.upgrader.hasRangeUpgrade)
 		{
-		TowerUpgradeController upgrader = selectedTower.upgrader;
-		if (upgrader.hasRangeUpgrade)
-		{
+			TowerUpgradeController upgrader = selectedTower.upgrader;
+
 			textRange.text = "Upgrade range( " + upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost + " )";
-			if (Money.instance.SpendMoney(upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost))
-			{
-				upgrader.upgradeRange();
-			}
+
 		}
 		else
 		{
 			textRange.text = "MAX";
 			showMessage("Max Upgrade RANGE");
 		}
+
+		if (selectedTower.upgrader.hasFirerateUpgrade)
+		{
+			TowerUpgradeController upgrader = selectedTower.upgrader;
+
+			textFirerate.text = "Upgrade firerate( " + upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost + " )";
+
 		}
+		else
+		{
+			textFirerate.text = "MAX";
+			showMessage("Max Upgrade FIRERATE");
+		}
+
+		if (selectedTower.upgrader.hasDamageUpgrade)
+		{
+			TowerUpgradeController upgrader = selectedTower.upgrader;
+
+			textDamage.text = "Upgrade Damage( " + upgrader.damageUpgrades[upgrader.currentDamageUpgrade].cost + " )";
+
+		}
+		else
+		{
+			textDamage.text = "MAX";
+			showMessage("Max Upgrade Damage");
+
+		}
+
+	}
+
+	public void UpgradeRange()
+	{
+
+		TowerUpgradeController upgrader = selectedTower.upgrader;
+		if (upgrader.hasRangeUpgrade)
+		{
+			if (Money.instance.SpendMoney(upgrader.rangeUpgrades[upgrader.currentRangeUpgrade].cost))
+			{
+				upgrader.upgradeRange();
+				SetupPanel();
+			}
+		}
+
 
 	}
 
@@ -194,34 +232,24 @@ public class TowerManager : MonoBehaviour
 		TowerUpgradeController upgrader = selectedTower.upgrader;
 		if (upgrader.hasFirerateUpgrade)
 		{
-			textFirerate.text = "Upgrade firerate( " + upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost + " )";
 			if (Money.instance.SpendMoney(upgrader.firerateUpgrades[upgrader.currentFirerateUpgrade].cost))
 			{
 				upgrader.upgradeFirerate();
-
+				SetupPanel();
 			}
 		}
-		else
-		{
-			textFirerate.text = "MAX";
-			showMessage("Max Upgrade FIRERATE");
-		}
+
 	}
 	public void UpgradeDamage()
 	{
 		TowerUpgradeController upgrader = selectedTower.upgrader;
 		if (upgrader.hasDamageUpgrade)
 		{
-			textDamage.text = "Upgrade Damage( " + upgrader.damageUpgrades[upgrader.currentDamageUpgrade].cost + " )";
 			if (Money.instance.SpendMoney(upgrader.damageUpgrades[upgrader.currentDamageUpgrade].cost))
 			{
 				upgrader.upgradeDamage();
+				SetupPanel();
 			}
-		}
-		else
-		{
-			textDamage.text = "MAX";
-			showMessage("Max Upgrade Damage");
 		}
 	}
 	private void ShowWarningAndDelay()
@@ -237,5 +265,5 @@ public class TowerManager : MonoBehaviour
 	}
 
 
-	
+
 }
