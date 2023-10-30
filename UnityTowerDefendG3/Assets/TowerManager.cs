@@ -137,7 +137,7 @@ public class TowerManager : MonoBehaviour
 		Panel_money.SetActive(false);
 		if (selectedTower == null)
 		{
-			Panel_money.SetActive(true);
+			//Panel_money.SetActive(true);
 		}
 		else
 		{
@@ -150,6 +150,7 @@ public class TowerManager : MonoBehaviour
 		Panel_money.SetActive(true);
 		Panel_Upgrade.SetActive(false);
 		selectedTower.removeRange();
+
 	}
 
 	public void SellTowerUpgradePanel()
@@ -159,6 +160,7 @@ public class TowerManager : MonoBehaviour
 			selectedTower = null;
 			Panel_Upgrade.SetActive(false);
 		Panel_money.SetActive(true);
+		selectedTowerEffect.SetActive(false);
 	}
 	public void UpgradeRange()
 	{
