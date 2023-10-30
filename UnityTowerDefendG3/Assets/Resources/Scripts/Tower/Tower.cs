@@ -24,12 +24,11 @@ public class Tower : MonoBehaviour
     public Target target;
 
     [Header("Attribute")]
-    public float firerate = .2f;
+	public int limitTower;
+	public float firerate = .2f;
     public bool isHuman = false;
     public GameObject range;
     private float checkCounter;
-    [HideInInspector]
-    public CircleCollider2D circleCollider;
     public bool onlyAttackFlying;
 
     [Header("References")]
@@ -39,7 +38,9 @@ public class Tower : MonoBehaviour
     public EnemyController enemyController { get; set; }
     [HideInInspector]
     public TowerUpgradeController upgrader;
-    private Base theBase;
+	[HideInInspector]
+	public CircleCollider2D circleCollider;
+	private Base theBase;
     public float dmgUpdate;
 
     private void Awake()
@@ -191,7 +192,6 @@ public class Tower : MonoBehaviour
             weaponAnimator.SetBool("isShot", isShot);        
         }
     }
-
     public void getTower()
     {
         if (TowerManager.Instance.isPlacing == false)

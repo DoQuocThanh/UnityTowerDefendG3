@@ -221,14 +221,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: 1
+  limitTower: 0
   firerate: 1.3
   isHuman: 1
   range: {fileID: 244605402178777206}
-  circleCollider: {fileID: 0}
   onlyAttackFlying: 0
   bulletPrefab: {fileID: 6396483472928885455, guid: 4ad1209cfa462e3488b05ae780568e44, type: 3}
   firingPoint: {fileID: 8935685814923688287}
   upgrader: {fileID: 0}
+  circleCollider: {fileID: 0}
   dmgUpdate: 0
 --- !u!114 &2503168978171938106
 MonoBehaviour:
@@ -301,7 +302,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2196467090233855922
 CanvasRenderer:
@@ -568,7 +569,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4181341927914634109
 Canvas:

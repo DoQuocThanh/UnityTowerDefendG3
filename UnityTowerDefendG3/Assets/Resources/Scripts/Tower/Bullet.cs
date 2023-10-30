@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		//  DamageEnemy(other);
+		// DamageEnemy(other);
 		if (other.CompareTag(("Enemy")))
 		{
 			other.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);

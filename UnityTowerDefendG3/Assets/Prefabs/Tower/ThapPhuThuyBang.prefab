@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6459845749652689671
 Canvas:
@@ -155,14 +155,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: 1
+  limitTower: 0
   firerate: 2
   isHuman: 1
   range: {fileID: 9121847858446986794}
-  circleCollider: {fileID: 0}
   onlyAttackFlying: 0
   bulletPrefab: {fileID: 1112704144440249589, guid: 1dfab54289824f24dba72001738014a9, type: 3}
   firingPoint: {fileID: 8918766414292877225}
   upgrader: {fileID: 0}
+  circleCollider: {fileID: 0}
   dmgUpdate: 0
 --- !u!114 &380337411404314470
 MonoBehaviour:
@@ -297,7 +298,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1851977466104736431
 CanvasRenderer:

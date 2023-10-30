@@ -40,7 +40,6 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
-            Debug.Log("kkkk");
             for (; currentWave < waves.Length; currentWave++)
             {
                 yield return new WaitForSeconds(waves[currentWave].timeBeforeEnemySpawn);
