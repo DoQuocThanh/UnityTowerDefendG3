@@ -206,9 +206,9 @@ GameObject:
   - component: {fileID: 1106765125289353141}
   - component: {fileID: 1263738308405963148}
   - component: {fileID: 3318133261957990108}
-  - component: {fileID: 4658408604201023264}
   - component: {fileID: 8449861379280819381}
   - component: {fileID: 6266332390659112594}
+  - component: {fileID: 6344674253751751173}
   m_Layer: 3
   m_Name: DemonDragonMonster
   m_TagString: Enemy
@@ -305,41 +305,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &4658408604201023264
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2407689429830288944}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.48, y: 0.48}
-  m_Direction: 0
 --- !u!50 &8449861379280819381
 Rigidbody2D:
   serializedVersion: 4
@@ -382,10 +347,46 @@ MonoBehaviour:
   moveSpeed: 0.4
   enemyHeath: 100
   moneyOnDeath: 20
+  canFly: 0
   animator: {fileID: 3318133261957990108}
   enemyHeathSlider: {fileID: 4283405960949193473}
   stateIcon: {fileID: 593299820931321545}
   burnEffect: {fileID: 7233214023732824307}
+--- !u!58 &6344674253751751173
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407689429830288944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.24
 --- !u!1 &3541320408820486806
 GameObject:
   m_ObjectHideFlags: 0

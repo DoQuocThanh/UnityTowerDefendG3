@@ -57,7 +57,7 @@ MonoBehaviour:
   firerate: 1.5
   isHuman: 1
   range: {fileID: 6471390089951606523}
-  onlyAttackFlying: 0
+  onlyAttackFlying: 1
   bulletPrefab: {fileID: 2823831764929957947, guid: 8da2a0bf19d02c546b8203f39affec9a, type: 3}
   firingPoint: {fileID: 9141087454044253802}
   upgrader: {fileID: 0}

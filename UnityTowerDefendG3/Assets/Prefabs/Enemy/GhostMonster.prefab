@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8019558602493121758}
   - component: {fileID: 4401437553319069933}
   - component: {fileID: 4343802090987641487}
-  - component: {fileID: 3029696922560356928}
   - component: {fileID: 8123461138608015079}
+  - component: {fileID: 5242578935122567448}
   m_Layer: 3
   m_Name: GhostMonster
   m_TagString: Enemy
@@ -137,8 +137,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &3029696922560356928
-CapsuleCollider2D:
+--- !u!114 &8123461138608015079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565597052746112461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.9
+  enemyHeath: 20
+  moneyOnDeath: 5
+  canFly: 0
+  animator: {fileID: 4401437553319069933}
+  enemyHeathSlider: {fileID: 7050833159768421039}
+  stateIcon: {fileID: 4564620865702678167}
+  burnEffect: {fileID: 4337123398243751973}
+--- !u!58 &5242578935122567448
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,27 +190,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.48, y: 0.48}
-  m_Direction: 0
---- !u!114 &8123461138608015079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565597052746112461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f1ac57aebcc884292b6dd43d77bc90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.9
-  enemyHeath: 20
-  moneyOnDeath: 5
-  animator: {fileID: 4401437553319069933}
-  enemyHeathSlider: {fileID: 7050833159768421039}
-  stateIcon: {fileID: 4564620865702678167}
-  burnEffect: {fileID: 4337123398243751973}
+  serializedVersion: 2
+  m_Radius: 0.24
 --- !u!1 &2051864739127800219
 GameObject:
   m_ObjectHideFlags: 0

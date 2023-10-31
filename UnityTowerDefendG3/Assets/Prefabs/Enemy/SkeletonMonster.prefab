@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3785038862406744317}
   - component: {fileID: 1880068455733589295}
   - component: {fileID: 2640896845447026505}
-  - component: {fileID: 8765184751898816641}
+  - component: {fileID: 3481516447918462247}
   m_Layer: 3
   m_Name: SkeletonMonster
   m_TagString: Enemy
@@ -227,6 +227,7 @@ MonoBehaviour:
   moveSpeed: 0.6
   enemyHeath: 50
   moneyOnDeath: 8
+  canFly: 0
   animator: {fileID: 3785038862406744317}
   enemyHeathSlider: {fileID: 821491463739040577}
   stateIcon: {fileID: 4071248154393079309}
@@ -258,8 +259,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &8765184751898816641
-CapsuleCollider2D:
+--- !u!58 &3481516447918462247
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -291,8 +292,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.48, y: 0.48}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.24
 --- !u!1 &2518214872205524329
 GameObject:
   m_ObjectHideFlags: 0

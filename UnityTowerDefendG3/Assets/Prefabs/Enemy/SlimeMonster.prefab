@@ -368,8 +368,8 @@ GameObject:
   - component: {fileID: 5429063166374506587}
   - component: {fileID: 7309989369419847236}
   - component: {fileID: 595688460705012740}
-  - component: {fileID: 5656126656480338503}
   - component: {fileID: 3365712896017022181}
+  - component: {fileID: 8018092020718490499}
   m_Layer: 3
   m_Name: SlimeMonster
   m_TagString: Enemy
@@ -481,12 +481,40 @@ MonoBehaviour:
   moveSpeed: 0.6
   enemyHeath: 20
   moneyOnDeath: 2
+  canFly: 0
   animator: {fileID: 7309989369419847236}
   enemyHeathSlider: {fileID: 6050590188957364477}
   stateIcon: {fileID: 2507537774621251545}
   burnEffect: {fileID: 1836743159940357537}
---- !u!70 &5656126656480338503
-CapsuleCollider2D:
+--- !u!50 &3365712896017022181
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972205675143949085}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &8018092020718490499
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -517,36 +545,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005787194, y: -0.005787194}
-  m_Size: {x: 0.46842563, y: 0.46842563}
-  m_Direction: 0
---- !u!50 &3365712896017022181
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2972205675143949085}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.24
 --- !u!1 &4936252779139112286
 GameObject:
   m_ObjectHideFlags: 0

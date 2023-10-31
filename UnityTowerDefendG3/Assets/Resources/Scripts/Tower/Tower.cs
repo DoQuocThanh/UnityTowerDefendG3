@@ -47,13 +47,15 @@ public class Tower : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         upgrader = GetComponent<TowerUpgradeController>();
-    }
+       
+
+	}
     void Start()
     {
         theBase = FindObjectOfType<Base>();
         checkCounter = firerate;
-        getRange();
-    }
+		removeRange();
+	}
     
     private void Update()
     {
@@ -68,14 +70,20 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if ( TowerManager.Instance.selectedTower == this)
+        if (TowerManager.Instance.selectedTower == this)
         {
+            Debug.Log(1);
             getRange();
         }
-        else if (TowerManager.Instance.isPlacing == false)
+        else
+        {
+           // TowerManager.Instance.CloseTowerUpgradePanel();
+           removeRange();
+		}
+        /*else if (TowerManager.Instance.isPlacing == false)
         {
             removeRange();
-        }
+        }*/
     }
 
     public void getRange()
@@ -194,12 +202,14 @@ public class Tower : MonoBehaviour
     }
     public void getTower()
     {
-        if (TowerManager.Instance.isPlacing == false)
+
+		if (TowerManager.Instance.isPlacing == false)
         {
 			TowerManager.Instance.selectedTower = this;
 			TowerManager.Instance.moveTowerSelectionEffect();
 			TowerManager.Instance.meme();
-		}
+        }
+       
 	}
        
 

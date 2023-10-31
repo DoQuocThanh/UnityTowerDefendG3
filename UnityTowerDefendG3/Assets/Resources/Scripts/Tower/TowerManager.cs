@@ -12,7 +12,7 @@ public class TowerManager : MonoBehaviour
 	public LayerMask whatIsPlacement, whatIsObstacle;
 	public Transform indicator;
 	public bool isPlacing;
-
+	public int totalLimit;
 	[Header("Reference")]
 	public GameObject selectedTowerEffect;
 	public GameObject Panel_money;
@@ -22,7 +22,7 @@ public class TowerManager : MonoBehaviour
 	public TextMeshProUGUI textRange;
 	public TextMeshProUGUI textFirerate;
 	public TextMeshProUGUI textDamage;
-
+	public TextMeshProUGUI textTotalLimit;
 	[HideInInspector]
 	private TowerItem towerItem;
 	[HideInInspector]
@@ -47,6 +47,7 @@ public class TowerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		textTotalLimit.SetText(count + "/" + totalLimit);
 		if (isPlacing)
 		{
 			indicator.position = GetGridPosition();
@@ -67,6 +68,7 @@ public class TowerManager : MonoBehaviour
 					{
 						isPlacing = false;
 						Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
+						
 						indicator.gameObject.SetActive(false);
 
 					}
@@ -90,11 +92,13 @@ public class TowerManager : MonoBehaviour
 	}
 	public void SelectedTower(TowerItem towerBtn)
 	{
-		if (count >= 5)
+		if (count >= totalLimit)
 		{
+			textTotalLimit.color = Color.red;
 			showMessage("limited tower");
 			return;
 		}
+		
 		towerItem = towerBtn;
 		isPlacing = true;
 		Destroy(indicator.gameObject);
@@ -144,9 +148,9 @@ public class TowerManager : MonoBehaviour
 	public void meme()
 	{
 		Panel_money.SetActive(false);
-
 		Panel_Upgrade.SetActive(true);
 		SetupPanel();
+		selectedTower.getRange();
 	}
 
 	public void CloseTowerUpgradePanel()
@@ -154,11 +158,11 @@ public class TowerManager : MonoBehaviour
 		Panel_money.SetActive(true);
 		Panel_Upgrade.SetActive(false);
 		selectedTower.removeRange();
-
 	}
 
 	public void SellTowerUpgradePanel()
 	{
+		textTotalLimit.color = Color.white;
 		Money.instance.SpendMoney(-5);
 		count--;
 		Destroy(selectedTower.gameObject);
@@ -208,6 +212,7 @@ public class TowerManager : MonoBehaviour
 			showMessage("Max Upgrade Damage");
 
 		}
+
 
 	}
 
