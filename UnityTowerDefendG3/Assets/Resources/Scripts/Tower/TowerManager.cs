@@ -60,10 +60,7 @@ public class TowerManager : MonoBehaviour
 
 			if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 			{
-				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-			}
-			else
-			{
+				
 				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
 
@@ -73,7 +70,7 @@ public class TowerManager : MonoBehaviour
 					{
 						isPlacing = false;
 						Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
-						
+
 						indicator.gameObject.SetActive(false);
 						for (int i = 0; i < placement.Length; i++)
 						{
@@ -81,6 +78,10 @@ public class TowerManager : MonoBehaviour
 						}
 					}
 				}
+			}
+			else
+			{
+				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 			}
 		}
 	}
