@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (theBase != null &&  theBase.currentHeath > 0)
+        if (theBase != null &&  theBase.currentHeath > 0 )
         {
             if (canFly)
             {

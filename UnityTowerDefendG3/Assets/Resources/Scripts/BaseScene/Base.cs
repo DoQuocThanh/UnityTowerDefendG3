@@ -34,6 +34,7 @@ public class Base : MonoBehaviour
         {
             currentHeath = 0;
             gameObject.SetActive(false);
+            WinScript.instance.winScene.SetActive(true);
 
         }
         heathSlider.value = currentHeath;

@@ -96,6 +96,11 @@ public class Introduction : MonoBehaviour
         }
 
     }
+    public void Exit()
+    {
+        guideUI.SetActive(false);
+        gameUI.SetActive(true);
+    }
 
     private void BackStep()
     {
@@ -130,5 +135,11 @@ public class Introduction : MonoBehaviour
             UpdateItemImage(); // Cập nhật hình ảnh vật phẩm sau khi hiển thị văn bản
         }
        // UpdateItemImage(); // Cập nhật hình ảnh vật phẩm sau khi hiển thị văn bản
+    }
+    public void Pause()
+    {
+        guideUI.SetActive(true);
+        gameUI.SetActive(false);
+
     }
 }
