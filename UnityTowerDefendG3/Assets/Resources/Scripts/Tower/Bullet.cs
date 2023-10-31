@@ -107,6 +107,6 @@ public class Bullet : MonoBehaviour
 				EffectAndDmgEnemy(enemy);
 			}
 		}
-
+		Destroy(gameObject);
 	}
 }

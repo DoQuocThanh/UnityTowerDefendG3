@@ -23,6 +23,7 @@ public class TowerManager : MonoBehaviour
 	public TextMeshProUGUI textFirerate;
 	public TextMeshProUGUI textDamage;
 	public TextMeshProUGUI textTotalLimit;
+	public Transform[] placement;
 	[HideInInspector]
 	private TowerItem towerItem;
 	[HideInInspector]
@@ -36,6 +37,10 @@ public class TowerManager : MonoBehaviour
 	}
 	void Start()
 	{
+		for (int i = 0; i < placement.Length; i++)
+		{
+			placement[i].gameObject.SetActive(false);
+		}
 		Panel_money.SetActive(true);
 		towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
 		towerInfo.transform.Find("Button - Sell").GetComponent<Button>().onClick.AddListener(() => SellTowerUpgradePanel());
@@ -70,7 +75,10 @@ public class TowerManager : MonoBehaviour
 						Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
 						
 						indicator.gameObject.SetActive(false);
-
+						for (int i = 0; i < placement.Length; i++)
+						{
+							placement[i].gameObject.SetActive(false);
+						}
 					}
 				}
 			}
@@ -108,6 +116,10 @@ public class TowerManager : MonoBehaviour
 		count++;
 		indicator = placeTower.transform;
 		placeTower.getRange();
+		for (int i = 0; i < placement.Length; i++)
+		{
+			placement[i].gameObject.SetActive(true);
+		}
 	}
 
 	public void moveTowerSelectionEffect()

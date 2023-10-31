@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -9,7 +10,7 @@ public  class WinScript : MonoBehaviour
     public GameObject loseScene;
     public GameObject winScene;
     public static WinScript instance;
-
+   // public String nextLevel;
     private void Awake()
     {
         instance = this;
@@ -28,22 +29,25 @@ public  class WinScript : MonoBehaviour
     }
     public void NextScene()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+		Scene currentScene = SceneManager.GetActiveScene();
 
-        // Lấy tên của scene
-        string sceneName = currentScene.name;
-        Debug.Log("Tên scene hiện tại là: " + sceneName);
-        // 01. Level 01
-        string levelIndex = sceneName.PadLeft(2, '0');
-        Debug.Log(levelIndex);
+		// Lấy tên của scene
+		string sceneName = currentScene.name;
+		Debug.Log("Tên scene hiện tại là: " + sceneName);
+		// 01. Level 01
+		string numberString = sceneName.Split('.')[0];
+		int number = int.Parse(numberString);
+		int numbernext = number + 1;
+		Debug.Log(numbernext);
+		string stringnext = numbernext.ToString();
+		string levelIndex = stringnext.PadLeft(2, '0');
+		Debug.Log(levelIndex);
 
-        int level = int.Parse(levelIndex);
-        level = level + 1;
-        Debug.Log(level); 
+
+        string levelSceneName = levelIndex + ". Level " + levelIndex ;
 
 
-        string levelSceneName = level + ". Level " + level;
-        SceneManager.LoadScene(levelSceneName);
+		SceneManager.LoadScene(levelSceneName);
 
 
     }
