@@ -91,7 +91,7 @@ public class TowerManager : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red);
 		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 200f))
+		if (Physics.Raycast(ray, out hit, 200f,whatIsPlacement ))
 		{
 			location = hit.point;
 		}

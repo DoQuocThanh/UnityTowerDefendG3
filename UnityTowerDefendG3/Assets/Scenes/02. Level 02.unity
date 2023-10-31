@@ -5651,7 +5651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102477671}
   - component: {fileID: 1102477670}
-  - component: {fileID: 1102477669}
+  - component: {fileID: 1102477672}
   m_Layer: 7
   m_Name: Map
   m_TagString: Untagged
@@ -5659,27 +5659,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1102477669
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102477668}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 14.4, y: 9.599999, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &1102477670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5747,6 +5726,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1102477672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102477668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 14.4, y: 9.599999, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1103185925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,7 +7645,7 @@ GameObject:
   - component: {fileID: 1261366057}
   - component: {fileID: 1261366056}
   - component: {fileID: 1261366055}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9709,7 +9709,7 @@ GameObject:
   - component: {fileID: 1590672773}
   - component: {fileID: 1590672772}
   - component: {fileID: 1590672771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15314,7 +15314,7 @@ GameObject:
   - component: {fileID: 1781243986}
   - component: {fileID: 1781243985}
   - component: {fileID: 1781243984}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17784,9 +17784,9 @@ SceneRoots:
   - {fileID: 525422086}
   - {fileID: 2146880320}
   - {fileID: 1572926142}
-  - {fileID: 1822279677}
   - {fileID: 1984906860}
   - {fileID: 1800604513}
   - {fileID: 396984176}
   - {fileID: 1102477671}
+  - {fileID: 1822279677}
   - {fileID: 233207984}

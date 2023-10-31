@@ -36,9 +36,21 @@ public class AbilityIndicator : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+	public Vector2 GetGridPosition()
+	{
+		Vector2 location = Vector2.zero;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit, 200f))
+		{
+			location = hit.point;
+		}
 
+		return location;
+	}
 
-    void ActivateAnimation()
+	void ActivateAnimation()
     {
         abilityAnimation.SetActive(true);
     }
