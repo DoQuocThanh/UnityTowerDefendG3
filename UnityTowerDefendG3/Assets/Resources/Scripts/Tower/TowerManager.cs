@@ -23,6 +23,7 @@ public class TowerManager : MonoBehaviour
 	public TextMeshProUGUI textFirerate;
 	public TextMeshProUGUI textDamage;
 	public TextMeshProUGUI textTotalLimit;
+	public Transform[] placement;
 	[HideInInspector]
 	private TowerItem towerItem;
 	[HideInInspector]
@@ -36,6 +37,10 @@ public class TowerManager : MonoBehaviour
 	}
 	void Start()
 	{
+		for (int i = 0; i < placement.Length; i++)
+		{
+			placement[i].gameObject.SetActive(false);
+		}
 		Panel_money.SetActive(true);
 		towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
 		towerInfo.transform.Find("Button - Sell").GetComponent<Button>().onClick.AddListener(() => SellTowerUpgradePanel());
@@ -48,32 +53,62 @@ public class TowerManager : MonoBehaviour
 	void Update()
 	{
 		textTotalLimit.SetText(count + "/" + totalLimit);
+
 		if (isPlacing)
 		{
 			indicator.position = GetGridPosition();
 			RaycastHit2D hit;
+			if (Input.GetMouseButtonDown(1))
+			{
+				indicator.gameObject.SetActive(false);
+				isPlacing = false;
+			}
 
-			if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
+			if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsPlacement))
 			{
 				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 			}
 			else
 			{
-				indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-
-
-				if (Input.GetMouseButtonDown(0))
+				if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 				{
-					if (Money.instance.SpendMoney(towerItem.cost))
-					{
-						isPlacing = false;
-						Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
-						
-						indicator.gameObject.SetActive(false);
 
-					}
+					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+
+
+					if (Input.GetMouseButtonDown(0))
+					{
+
+						if (count >= totalLimit)
+						{
+							textTotalLimit.color = Color.red;
+							showMessage("limited tower");
+							return;
+						}
+						count++;
+						if (Money.instance.SpendMoney(towerItem.cost))
+						{
+							isPlacing = false;
+							Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
+
+							indicator.gameObject.SetActive(false);
+							for (int i = 0; i < placement.Length; i++)
+							{
+								placement[i].gameObject.SetActive(false);
+							}
+						}
+					} 
+					
 				}
+				else
+				{
+					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+				}
+				
 			}
+
+
+
 		}
 	}
 
@@ -92,22 +127,21 @@ public class TowerManager : MonoBehaviour
 	}
 	public void SelectedTower(TowerItem towerBtn)
 	{
-		if (count >= totalLimit)
-		{
-			textTotalLimit.color = Color.red;
-			showMessage("limited tower");
-			return;
-		}
-		
+
+
 		towerItem = towerBtn;
 		isPlacing = true;
 		Destroy(indicator.gameObject);
 		Tower placeTower = Instantiate(towerItem.towerPrefab);
 		placeTower.enabled = false;
 		placeTower.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
-		count++;
+
 		indicator = placeTower.transform;
 		placeTower.getRange();
+		for (int i = 0; i < placement.Length; i++)
+		{
+			placement[i].gameObject.SetActive(true);
+		}
 	}
 
 	public void moveTowerSelectionEffect()
@@ -129,7 +163,9 @@ public class TowerManager : MonoBehaviour
 		else
 		 if (val == 2)
 		{
+			Debug.Log("aaaaaa");
 			selectedTower.target = Target.Last;
+			Debug.Log("bbbbbbbbbbb");
 		}
 		else
 		 if (val == 3)

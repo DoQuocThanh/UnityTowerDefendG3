@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,10 +13,6 @@ public class Introduction : MonoBehaviour
     public Image itemImage;
     public Button nextButton;
     public Button backButton;
-    // public GameObject gameUI;
-    public GameObject guideUI;
-    public GameObject gameUI;
-
 
 
     public Sprite[] itemImages; // Mảng chứa hình ảnh vật phẩm
@@ -29,19 +26,21 @@ public class Introduction : MonoBehaviour
     }
     private void Start()
     {
-        guideUI.SetActive(true);
-
-        // Bắt đầu game logic (sinh ra quái vật, chạy game...)
-        gameUI.SetActive(false);
-        // Gán đối tượng RawImage
-        //   FindAnyObjectByType<PauseMenu>().StopPlay();
-        nextButton.onClick.AddListener(NextStep);
+		// Bắt đầu game logic (sinh ra quái vật, chạy game...)
+		// Gán đối tượng RawImage
+		//   FindAnyObjectByType<PauseMenu>().StopPlay();
+		nextButton.onClick.AddListener(NextStep);
         backButton.onClick.AddListener(BackStep);
 
     }
+	public void Pause()
+	{
+		gameObject.SetActive(true);
+		Time.timeScale = 0;
 
+	}
 
-    private void StartInstructionCoroutine()
+	private void StartInstructionCoroutine()
     {
        
         StartCoroutine(ShowInstructions());
@@ -60,12 +59,11 @@ public class Introduction : MonoBehaviour
 
     private void UpdateItemImageAndText()
     {
-          Time.timeScale = 1;
-      
-            if (step >= 0 && step < itemImages.Length)
+		Time.timeScale = 0.001f;
+		if (step >= 0 && step < itemImages.Length)
             {
 
-              // Time.timeScale = 1;
+              
                 Debug.Log(itemImages[step]);
                 //  Debug.Log(itemTexts[step]);
 
@@ -88,19 +86,19 @@ public class Introduction : MonoBehaviour
         }
         else
         {
-            guideUI.SetActive(false);
+            gameObject.SetActive(false);
+			// Bắt đầu game logic (sinh ra quái vật, chạy game...)
+			Time.timeScale = 1;
 
-            // Bắt đầu game logic (sinh ra quái vật, chạy game...)
-            gameUI.SetActive(true);
-
-        }
+		}
 
     }
     public void Exit()
     {
-        guideUI.SetActive(false);
-        gameUI.SetActive(true);
-    }
+        gameObject.SetActive(false);
+		Time.timeScale = 1;
+
+	}
 
     private void BackStep()
     {
@@ -122,7 +120,7 @@ public class Introduction : MonoBehaviour
         for (int i = 0; i < fullText.Length; i++)
         {
             instructionText.text += fullText[i]; // Thêm ký tự vào dòng văn bản
-            yield return new WaitForSeconds(0.05f); // Chờ một khoảng thời gian trước khi hiển thị ký tự tiếp theo
+            yield return new WaitForSeconds(0.00005f); // Chờ một khoảng thời gian trước khi hiển thị ký tự tiếp theo
         }
     }
 
@@ -134,12 +132,5 @@ public class Introduction : MonoBehaviour
         {
             UpdateItemImage(); // Cập nhật hình ảnh vật phẩm sau khi hiển thị văn bản
         }
-       // UpdateItemImage(); // Cập nhật hình ảnh vật phẩm sau khi hiển thị văn bản
-    }
-    public void Pause()
-    {
-        guideUI.SetActive(true);
-        gameUI.SetActive(false);
-
     }
 }
