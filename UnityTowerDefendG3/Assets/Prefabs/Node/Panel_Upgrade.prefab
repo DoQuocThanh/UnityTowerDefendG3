@@ -269,9 +269,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Last
       m_Image: {fileID: 0}
-    - m_Text: StrongestEnememies
+    - m_Text: Strongest
       m_Image: {fileID: 0}
-    - m_Text: WeakestEnememies
+    - m_Text: Weakest
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1348,10 +1348,10 @@ RectTransform:
   - {fileID: 3018588682292885875}
   m_Father: {fileID: 2027332755315478773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -102, y: -66}
-  m_SizeDelta: {x: 694.7913, y: 96.5338}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4649167991975957748
 CanvasRenderer:

@@ -72,7 +72,6 @@ public class Tower : MonoBehaviour
 
         if (TowerManager.Instance.selectedTower == this)
         {
-            Debug.Log(1);
             getRange();
         }
         else
