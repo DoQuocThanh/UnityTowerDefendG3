@@ -6,11 +6,16 @@ public class AbilityIndicator : MonoBehaviour
     private Ability ability;
     public GameObject abilityAnimation;
     public BoxCollider boxCollider;
+    private int mapLayerNumber;
     private void OnEnable()
     {
         abilityAnimation.transform.localScale = gameObject.transform.localScale;
     }
-
+    void Start()
+    {
+        int mapBitmaskValue = LayerMask.GetMask("Map"); ; // Replace this with the desired bitmask value
+        mapLayerNumber = BitmaskToLayerNumber(mapBitmaskValue);
+    }
     void Update()
     {
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -20,7 +25,7 @@ public class AbilityIndicator : MonoBehaviour
             // Raycast to detect the object click
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 10f, mapLayerNumber))//skip Map layer when hit
             {
                 if (hit.collider.gameObject == gameObject)
                 {
@@ -46,5 +51,16 @@ public class AbilityIndicator : MonoBehaviour
     public void SetAbility(Ability ability)
     {
         this.ability = ability;
+    }
+    int BitmaskToLayerNumber(int bitmaskValue)
+    {
+        for (int i = 0; i < 32; i++)
+        {
+            if ((bitmaskValue & (1 << i)) != 0)
+            {
+                return i;
+            }
+        }
+        return -1; // Invalid layer
     }
 }

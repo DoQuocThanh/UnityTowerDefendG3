@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 79158217}
   - component: {fileID: 79158216}
   - component: {fileID: 79158215}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 166592062}
   - component: {fileID: 166592061}
   - component: {fileID: 166592060}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3415,7 +3415,7 @@ GameObject:
   - component: {fileID: 446623107}
   - component: {fileID: 446623106}
   - component: {fileID: 446623105}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AbilityIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

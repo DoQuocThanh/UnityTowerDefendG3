@@ -9,7 +9,7 @@ public class AbilityHolder : MonoBehaviour
     public GameObject abilityLayer;
     public Image cooldownLayer;
     public Text cooldownText;
-
+    private int mapLayerNumber;
 
     enum AbilityState
     {
@@ -35,6 +35,8 @@ public class AbilityHolder : MonoBehaviour
         abilityLayer.GetComponent<RectTransform>().position = screenPosition;
         cooldownLayer.fillAmount = 0f;
         cooldownText.text = "";
+        int mapBitmaskValue = LayerMask.GetMask("Map"); ; // Replace this with the desired bitmask value
+        mapLayerNumber = BitmaskToLayerNumber(mapBitmaskValue);
     }
 
     void Update()
@@ -47,7 +49,7 @@ public class AbilityHolder : MonoBehaviour
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
+                    if (Physics.Raycast(ray, out hit,10f, mapLayerNumber))
                     {
                         if (hit.collider.gameObject == gameObject)
                         {
@@ -101,6 +103,18 @@ public class AbilityHolder : MonoBehaviour
             cooldownLayer.fillAmount = cooldownTime / ability.cooldownTime;
             cooldownText.text = Mathf.Ceil(cooldownTime).ToString();
         }
+    }
+
+    int BitmaskToLayerNumber(int bitmaskValue)
+    {
+        for (int i = 0; i < 32; i++)
+        {
+            if ((bitmaskValue & (1 << i)) != 0)
+            {
+                return i;
+            }
+        }
+        return -1; // Invalid layer
     }
 
 }
