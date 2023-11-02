@@ -9,11 +9,15 @@ public class Base : MonoBehaviour
     public float currentHeath ;
 
     public Text currentHeathText;
-    // Start is called before the first frame update
-    void Start()
+	public Slider heathSlider;
+
+	// Start is called before the first frame update
+	void Start()
     {
         currentHeath = totalHeath;
-        currentHeathText.text = "Heath base: "+ currentHeath.ToString() + "/" + totalHeath.ToString();
+		heathSlider.maxValue = totalHeath;
+		heathSlider.value = currentHeath;
+		currentHeathText.text = currentHeath.ToString() + "/" + totalHeath.ToString();
 
     }
 
@@ -27,7 +31,7 @@ public class Base : MonoBehaviour
     {
 
         currentHeath -= damage;
-        if (currentHeath <=10)
+        if (currentHeath <=20)
         {
             currentHeathText.color = Color.red;
 		}
@@ -37,7 +41,8 @@ public class Base : MonoBehaviour
             gameObject.SetActive(false);
 
         }
-        currentHeathText.text = "Heath base: " + currentHeath.ToString() + "/" + totalHeath.ToString();
+		heathSlider.value = currentHeath;
+		currentHeathText.text = currentHeath.ToString() + "/" + totalHeath.ToString();
 
     }
 }
