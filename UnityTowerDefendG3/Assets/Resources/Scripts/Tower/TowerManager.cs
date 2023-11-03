@@ -72,7 +72,7 @@ public class TowerManager : MonoBehaviour
 			{
 				if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 				{
-
+					Debug.Log("cc");
 					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
 
