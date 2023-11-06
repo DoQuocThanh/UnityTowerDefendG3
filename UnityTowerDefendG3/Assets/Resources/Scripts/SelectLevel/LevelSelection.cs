@@ -44,6 +44,8 @@ public class LevelSelection : MonoBehaviour
     {
         if(unlocked)
         {
+
+            AudioManeger.Instance.PlaySFX("btn_Click");
             string levelIndex = gameObject.name.PadLeft(2, '0');
             string levelSceneName = levelIndex + ". Level " + levelIndex;
             SceneManager.LoadScene(levelSceneName);

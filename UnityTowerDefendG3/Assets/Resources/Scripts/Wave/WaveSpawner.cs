@@ -92,8 +92,8 @@ public class WaveSpawner : MonoBehaviour
 			indexEnemy = Random.Range(0, wave.enemyUnits.Count());
 			timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);
 			Instantiate(wave.enemyUnits[indexEnemy].enemy, spawnPoint.position, spawnPoint.rotation);
-
-			wave.enemyUnits[indexEnemy].quantity -= 1;
+            AudioManeger.Instance.PlaySFX("enemySpawn");
+            wave.enemyUnits[indexEnemy].quantity -= 1;
 			if (wave.enemyUnits[indexEnemy].quantity == 0)
 				wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);
 			yield return new WaitForSeconds(timeRandom);
