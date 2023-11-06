@@ -31,9 +31,28 @@ public class Introduction : MonoBehaviour
 		//   FindAnyObjectByType<PauseMenu>().StopPlay();
 		nextButton.onClick.AddListener(NextStep);
         backButton.onClick.AddListener(BackStep);
+      //  backButton.gameObject.SetActive(false);
 
     }
-	public void Pause()
+    private void Update()
+    {
+        backButton.gameObject.SetActive(true);
+
+        nextButton.gameObject.SetActive(true);
+        if (step == 0)
+        {
+            backButton.gameObject.SetActive(false);
+
+            nextButton.gameObject.SetActive(true);
+        }
+        else if (step == itemImages.Length - 1)
+        {
+            backButton.gameObject.SetActive(true);
+
+            nextButton.gameObject.SetActive(false);
+        }
+    }
+    public void Pause()
 	{
 		gameObject.SetActive(true);
 		Time.timeScale = 0;
@@ -51,10 +70,15 @@ public class Introduction : MonoBehaviour
 
     private void UpdateItemImage()
     {
-        if (step >= 0 && step < itemImages.Length )
+        
+        if (step > 0 && step < itemImages.Length )
         {
-            itemImage.sprite = itemImages[step];
+          
+           itemImage.sprite = itemImages[step];
+
+          
         }
+       
     }
 
     private void UpdateItemImageAndText()
@@ -62,8 +86,6 @@ public class Introduction : MonoBehaviour
 		Time.timeScale = 0.001f;
 		if (step >= 0 && step < itemImages.Length)
             {
-
-              
                 Debug.Log(itemImages[step]);
                 //  Debug.Log(itemTexts[step]);
 
@@ -77,20 +99,30 @@ public class Introduction : MonoBehaviour
 
     public void NextStep()
     {
+        //if (step == itemImages.Length - 1)
+        //{
+        //    nextButton.gameObject.SetActive(false);
+
+        //}
 
         if (step < itemImages.Length - 1)
         {
             step++;
             UpdateItemImageAndText();
             StartInstructionCoroutine();
-        }
-        else
-        {
-            gameObject.SetActive(false);
-			// Bắt đầu game logic (sinh ra quái vật, chạy game...)
-			Time.timeScale = 1;
+            nextButton.gameObject.SetActive(true);
 
-		}
+        }
+  //      else if (step == itemImages.Length - 1)
+  //      {
+  //          backButton.gameObject.SetActive(true);
+
+  //          nextButton.gameObject.SetActive(false);
+  //       //   gameObject.SetActive(false);
+		//	// Bắt đầu game logic (sinh ra quái vật, chạy game...)
+		//	//Time.timeScale = 1;
+
+		//}
 
     }
     public void Exit()
@@ -102,13 +134,21 @@ public class Introduction : MonoBehaviour
 
     private void BackStep()
     {
-
+   
         if (step > 0)
         {
             step--;
             UpdateItemImageAndText();
             StartInstructionCoroutine();
+            backButton.gameObject.SetActive(true);
+
         }
+        //else if (step == 0)
+        //{
+        //    backButton.gameObject.SetActive(false);
+        //    nextButton.gameObject.SetActive(true);
+
+        //}
 
     }
 
@@ -119,6 +159,7 @@ public class Introduction : MonoBehaviour
 
         for (int i = 0; i < fullText.Length; i++)
         {
+            
             instructionText.text += fullText[i]; // Thêm ký tự vào dòng văn bản
             yield return new WaitForSeconds(0.00005f); // Chờ một khoảng thời gian trước khi hiển thị ký tự tiếp theo
         }
