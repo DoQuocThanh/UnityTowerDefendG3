@@ -39,6 +39,7 @@ public class TowerManager : MonoBehaviour
 	{
 		for (int i = 0; i < placement.Length; i++)
 		{
+
 			placement[i].gameObject.SetActive(false);
 
 		}
