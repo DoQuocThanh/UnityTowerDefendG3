@@ -17,10 +17,10 @@ public class dialog : MonoBehaviour
 
 	void Start()
 	{
-		gameUI.SetActive(false);
+		Time.timeScale = 0f;
+	    GameSpeed.instance.gameObject.SetActive(false);
 		textComponent.text = string.Empty;
 		StartDialogue();
-
 	}
 
 	// Update is called once per frame
@@ -34,7 +34,9 @@ public class dialog : MonoBehaviour
 			}
 			else
 			{
+				
 				StopAllCoroutines();
+
 				textComponent.text = lines[index];
 			}
 		}
@@ -48,6 +50,7 @@ public class dialog : MonoBehaviour
 	}
 	IEnumerator TypeLine()
 	{
+		Time.timeScale = 0.001f;
 		foreach (char c in lines[index].ToCharArray())
 		{
 			textComponent.text += c;
@@ -59,13 +62,15 @@ public class dialog : MonoBehaviour
 	{
 		if (index < lines.Length - 1)
 		{
+		
 			index++;
 			textComponent.text = string.Empty;
 			StartCoroutine(TypeLine());
 		}
 		else
 		{
-			gameUI.SetActive(true);
+			Time.timeScale = 1f;
+			GameSpeed.instance.gameObject.SetActive(true);
 			panelUI.SetActive(false);
 		}
 	}

@@ -8,7 +8,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     public void Pause()
     {
-        Debug.Log("Hien thi");
+		GameSpeed.instance.gameObject.SetActive(false);
+		Debug.Log("Hien thi");
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
 
@@ -21,7 +22,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+		GameSpeed.instance.gameObject.SetActive(true);
+		pauseMenu.SetActive(false);
         Time.timeScale = 1;
 
     }
@@ -34,7 +36,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
 
     }

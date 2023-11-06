@@ -8,6 +8,13 @@ public class GameSpeed : MonoBehaviour
 {
 	public int gameSpeed = 1;
 	public TextMeshProUGUI gameSpeedText;
+	public static GameSpeed instance;
+	private void Awake()
+	{
+
+		instance = this;
+
+	}
 	// Update is called once per frame
 	void Update()
 	{

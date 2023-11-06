@@ -40,6 +40,7 @@ public class TowerManager : MonoBehaviour
 		for (int i = 0; i < placement.Length; i++)
 		{
 			placement[i].gameObject.SetActive(false);
+
 		}
 		Panel_money.SetActive(true);
 		towerInfo.transform.Find("Button - Close").GetComponent<Button>().onClick.AddListener(() => CloseTowerUpgradePanel());
@@ -53,9 +54,11 @@ public class TowerManager : MonoBehaviour
 	void Update()
 	{
 		textTotalLimit.SetText(count + "/" + totalLimit);
-
+		
 		if (isPlacing)
 		{
+
+			
 			indicator.position = GetGridPosition();
 			RaycastHit2D hit;
 			if (Input.GetMouseButtonDown(1))
@@ -72,7 +75,6 @@ public class TowerManager : MonoBehaviour
 			{
 				if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 				{
-					Debug.Log("cc");
 					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
 
@@ -88,14 +90,19 @@ public class TowerManager : MonoBehaviour
 						count++;
 						if (Money.instance.SpendMoney(towerItem.cost))
 						{
+							
 							isPlacing = false;
 							Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
-
-							indicator.gameObject.SetActive(false);
+							GameObject meme = towerItem.towerPrefab.transform.Find("Circle").gameObject;
+							meme.GetComponentInChildren<SpriteRenderer>().enabled = false;
+							
 							for (int i = 0; i < placement.Length; i++)
 							{
 								placement[i].gameObject.SetActive(false);
+								
 							}
+							indicator.gameObject.SetActive(false);
+							
 						}
 					} 
 					
@@ -103,6 +110,7 @@ public class TowerManager : MonoBehaviour
 				else
 				{
 					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+					
 				}
 				
 			}
@@ -125,22 +133,28 @@ public class TowerManager : MonoBehaviour
 
 		return location;
 	}
+ 
 	public void SelectedTower(TowerItem towerBtn)
 	{
-
+		
 
 		towerItem = towerBtn;
+		
+		
 		isPlacing = true;
 		Destroy(indicator.gameObject);
 		Tower placeTower = Instantiate(towerItem.towerPrefab);
 		placeTower.enabled = false;
 		placeTower.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
-
+		Transform meme = placeTower.transform.Find("Circle");
+		meme.GetComponentInChildren<SpriteRenderer>().enabled = true;
+		meme.GetComponentInChildren<SpriteRenderer>().color = Color.green;
 		indicator = placeTower.transform;
 		placeTower.getRange();
 		for (int i = 0; i < placement.Length; i++)
 		{
 			placement[i].gameObject.SetActive(true);
+			
 		}
 	}
 
@@ -302,7 +316,7 @@ public class TowerManager : MonoBehaviour
 	{
 		textWarning.gameObject.SetActive(true);
 		textWarning.SetText(message);
-		Invoke("ShowWarningAndDelay", 2);
+		Invoke("ShowWarningAndDelay", 1);
 	}
 
 

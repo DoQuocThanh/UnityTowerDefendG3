@@ -27,6 +27,7 @@ public class WaveSpawner : MonoBehaviour
 
 	public Wave[] waves;
 	public Transform spawnPoint;
+
 	public TextMeshProUGUI waveText;        // Text để hiển thị sóng
 	public TextMeshProUGUI remainEnemyText;   // Text mới để hiển thị số lượng quái vật còn lại
 	private int currentWave = 0;
@@ -91,6 +92,7 @@ public class WaveSpawner : MonoBehaviour
 			indexEnemy = Random.Range(0, wave.enemyUnits.Count());
 			timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);
 			Instantiate(wave.enemyUnits[indexEnemy].enemy, spawnPoint.position, spawnPoint.rotation);
+
 			wave.enemyUnits[indexEnemy].quantity -= 1;
 			if (wave.enemyUnits[indexEnemy].quantity == 0)
 				wave.enemyUnits.Remove(wave.enemyUnits[indexEnemy]);

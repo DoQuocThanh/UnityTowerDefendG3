@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 3.5
 --- !u!114 &1570690255041298865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2972340601323551866, guid: 8da2a0bf19d02c546b8203f39affec9a, type: 3}
   rangeUpgrades:
-  - amount: 2.3
+  - amount: 4
     cost: 10
-  - amount: 2.5
+  - amount: 4.5
     cost: 15
   currentRangeUpgrade: 0
   hasRangeUpgrade: 1
@@ -661,7 +661,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.003331624}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5523677143954183741}
