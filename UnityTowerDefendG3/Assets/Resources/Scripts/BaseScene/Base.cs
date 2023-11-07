@@ -34,6 +34,7 @@ public class Base : MonoBehaviour
         if (currentHeath <=20)
         {
             currentHeathText.color = Color.red;
+            AudioManeger.Instance.PlaySFX("base");
 		}
         if (currentHeath <= 0)
         {

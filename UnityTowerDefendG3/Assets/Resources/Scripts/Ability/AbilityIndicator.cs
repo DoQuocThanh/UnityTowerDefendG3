@@ -29,6 +29,7 @@ public class AbilityIndicator : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    AudioManeger.Instance.PlaySFX("ki_nang");
                     abilityAnimation.transform.position = gameObject.transform.position;
                     ability.Activate(this);
                     gameObject.SetActive(false); // Hide Indicator to show animation              

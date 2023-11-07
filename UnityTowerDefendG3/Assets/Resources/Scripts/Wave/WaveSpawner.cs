@@ -35,6 +35,8 @@ public class WaveSpawner : MonoBehaviour
 	public Base Tower;
 	public GameObject victoryPanel;
 	public GameObject defeatPanel;
+
+	private bool isEnd = false;
 	private void Start()
 	{
 		//AudioManeger.Instance.PlayMusic("Theme");
@@ -60,24 +62,31 @@ public class WaveSpawner : MonoBehaviour
 	private void Update()
 	{
 		UpdateRemainingEnemies();
+		if (!isEnd) {
+			if (currentWave >= waves.Length && CountActiveEnemies() == 0)
+			{
+			/*	AudioManeger.Instance.PlaySFX("win");*/
+				victoryPanel.SetActive(true);
+				string activeScene = SceneManager.GetActiveScene().name;
+				string levelIndex = activeScene.Split(".")[0];
+				PlayerPrefs.SetInt("Lv" + levelIndex, 1);
+				Time.timeScale = 0;
+				isEnd = true;
+			}
+			//lose
+			if (Tower.currentHeath <= 0)
+			{
 
+
+				Debug.Log("destroy");
+				defeatPanel.SetActive(true);
+				/*AudioManeger.Instance.PlaySFX("lose");*/
+				Time.timeScale = 0;
+				isEnd = true;
+			}
+		} 
 		//win 
-		if (currentWave >= waves.Length  && CountActiveEnemies() == 0)
-		{
-
-			victoryPanel.SetActive(true);
-			string activeScene = SceneManager.GetActiveScene().name;
-			string levelIndex = activeScene.Split(".")[0];
-			PlayerPrefs.SetInt("Lv" + levelIndex, 1);
-		}
-		//lose
-		if (Tower.currentHeath <= 0)
-		{
-
-			Debug.Log("destroy");
-			defeatPanel.SetActive(true);
-			Time.timeScale = 0;
-		}
+		
 	}
 
 
@@ -87,7 +96,7 @@ public class WaveSpawner : MonoBehaviour
 		int indexEnemy = 0;
 		float timeRandom = 0;
 		
-		while (wave.enemyUnits.Sum(x => x.quantity) > 0)
+		while (wave.enemyUnits.Sum(x => x.quantity) > 0 && !isEnd)
 		{
 			indexEnemy = Random.Range(0, wave.enemyUnits.Count());
 			timeRandom = Random.Range(wave.timeBetweenSpawnsMin, wave.timeBetweenSpawnsMax);

@@ -14,7 +14,7 @@ public class LevelSelection : MonoBehaviour
         AudioManeger.Instance.PlayMusic("nhac_chon_map");
         UpdateLevelStatus();
         UpdateLevelImage();
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
 
     private void UpdateLevelStatus()
@@ -25,6 +25,7 @@ public class LevelSelection : MonoBehaviour
             unlocked = true;
         }
     }
+
     private void UpdateLevelImage()
     {
         if (unlocked)
@@ -45,10 +46,11 @@ public class LevelSelection : MonoBehaviour
         if(unlocked)
         {
 
-            AudioManeger.Instance.PlaySFX("btn_Click");
             string levelIndex = gameObject.name.PadLeft(2, '0');
             string levelSceneName = levelIndex + ". Level " + levelIndex;
-            SceneManager.LoadScene(levelSceneName);
+			AudioManeger.Instance.PlaySFX(levelSceneName);
+
+			SceneManager.LoadScene(levelSceneName);
         }
     }
 }

@@ -204,6 +204,8 @@ public class Tower : MonoBehaviour
 
 		if (TowerManager.Instance.isPlacing == false)
         {
+     //       AudioManeger.Instance.PlaySFX("btn_Click");
+
 			TowerManager.Instance.selectedTower = this;
 			TowerManager.Instance.moveTowerSelectionEffect();
 			TowerManager.Instance.meme();

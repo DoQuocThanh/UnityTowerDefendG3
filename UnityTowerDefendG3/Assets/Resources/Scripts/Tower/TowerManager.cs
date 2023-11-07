@@ -94,6 +94,7 @@ public class TowerManager : MonoBehaviour
 							
 							isPlacing = false;
 							Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
+							AudioManeger.Instance.PlaySFX("towerPlace");
 							GameObject meme = towerItem.towerPrefab.transform.Find("Circle").gameObject;
 							meme.GetComponentInChildren<SpriteRenderer>().enabled = false;
 							
@@ -137,7 +138,8 @@ public class TowerManager : MonoBehaviour
  
 	public void SelectedTower(TowerItem towerBtn)
 	{
-		
+
+		AudioManeger.Instance.PlaySFX("btn_Click");
 
 		towerItem = towerBtn;
 		
@@ -170,7 +172,7 @@ public class TowerManager : MonoBehaviour
 
 	public void SelectTarget(int val)
 	{
-
+		AudioManeger.Instance.PlaySFX("btn_Click");
 		if (val == 1)
 		{
 			selectedTower.target = Target.First;
@@ -206,6 +208,7 @@ public class TowerManager : MonoBehaviour
 
 	public void CloseTowerUpgradePanel()
 	{
+		AudioManeger.Instance.PlaySFX("btn_Click");
 		Panel_money.SetActive(true);
 		Panel_Upgrade.SetActive(false);
 		selectedTower.removeRange();
@@ -213,6 +216,7 @@ public class TowerManager : MonoBehaviour
 
 	public void SellTowerUpgradePanel()
 	{
+		AudioManeger.Instance.PlaySFX("towerRemove");
 		textTotalLimit.color = Color.white;
 		Money.instance.SpendMoney(-5);
 		count--;
@@ -224,6 +228,7 @@ public class TowerManager : MonoBehaviour
 	}
 	public void SetupPanel()
 	{
+
 		if (selectedTower.upgrader.hasRangeUpgrade)
 		{
 			TowerUpgradeController upgrader = selectedTower.upgrader;
@@ -269,7 +274,7 @@ public class TowerManager : MonoBehaviour
 
 	public void UpgradeRange()
 	{
-
+		AudioManeger.Instance.PlaySFX("towerUpgrade");
 		TowerUpgradeController upgrader = selectedTower.upgrader;
 		if (upgrader.hasRangeUpgrade)
 		{
@@ -285,6 +290,8 @@ public class TowerManager : MonoBehaviour
 
 	public void UpgradeFirerate()
 	{
+		AudioManeger.Instance.PlaySFX("towerUpgrade");
+
 		TowerUpgradeController upgrader = selectedTower.upgrader;
 		if (upgrader.hasFirerateUpgrade)
 		{
@@ -298,6 +305,8 @@ public class TowerManager : MonoBehaviour
 	}
 	public void UpgradeDamage()
 	{
+		AudioManeger.Instance.PlaySFX("towerUpgrade");
+
 		TowerUpgradeController upgrader = selectedTower.upgrader;
 		if (upgrader.hasDamageUpgrade)
 		{

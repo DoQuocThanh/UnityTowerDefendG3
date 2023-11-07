@@ -5226,7 +5226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
       propertyPath: sfxSound.Array.size
-      value: 19
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: musicSound.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
       propertyPath: sfxSound.Array.data[6].clip
@@ -5327,10 +5331,50 @@ PrefabInstance:
     - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
       propertyPath: sfxSound.Array.data[18].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a61829dfbebbda14489403ca5180ec72, type: 3}
+      objectReference: {fileID: 8300000, guid: 40910b15e6a86dd47a884f1d2c9c5079, type: 3}
     - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
       propertyPath: sfxSound.Array.data[18].name
-      value: nangCap
+      value: win
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[19].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 06b270c5e6d7e7645bbee47411dd2c85, type: 3}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[19].name
+      value: stun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[20].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ae75855350194542b3b9de193bd099c, type: 3}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[20].name
+      value: base
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[21].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 06b270c5e6d7e7645bbee47411dd2c85, type: 3}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: sfxSound.Array.data[21].name
+      value: stun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: musicSound.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 866b59be55103bb458f59d2fb9443a6f, type: 3}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: musicSound.Array.data[2].name
+      value: 03. Level 03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: musicSound.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 866b59be55103bb458f59d2fb9443a6f, type: 3}
+    - target: {fileID: 7398591488789366110, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
+      propertyPath: musicSound.Array.data[3].name
+      value: 03. Level 03
       objectReference: {fileID: 0}
     - target: {fileID: 7720208784717363883, guid: c0cff4dee6fef024a923244f303cdf01, type: 3}
       propertyPath: m_Name

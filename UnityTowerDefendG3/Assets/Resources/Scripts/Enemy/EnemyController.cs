@@ -104,27 +104,45 @@ public class EnemyController : MonoBehaviour
         enemyHeath = Mathf.Clamp(enemyHeath - damage, 0, enemyHeathSlider.maxValue);
         if (enemyHeath > 0)
         {
-            enemyHeathSlider.value = enemyHeath;
+			AudioManeger.Instance.PlaySFX("enemyImpact");
+			enemyHeathSlider.value = enemyHeath;
         }
         else
         {
+            AudioManeger.Instance.PlaySFX("enemyDeath");
             Money.instance.GiveMoney(moneyOnDeath);
             Destroy(gameObject);
         }
     }
+	public void takeDamageFire(float damage)
+	{
+		enemyHeath = Mathf.Clamp(enemyHeath - damage, 0, enemyHeathSlider.maxValue);
+		if (enemyHeath > 0)
+		{
+			enemyHeathSlider.value = enemyHeath;
+		}
+		else
+		{
+			AudioManeger.Instance.PlaySFX("enemyDeath");
+			Money.instance.GiveMoney(moneyOnDeath);
+			Destroy(gameObject);
+		}
+	}
 
 
-    public void ApplyBurnEffect(float duration, float damagePercent) {
-        float totalDamage = originalHeath * damagePercent;
+	public void ApplyBurnEffect(float duration, float damagePercent) {
+		
+		float totalDamage = originalHeath * damagePercent;
         StartCoroutine(BurnEnemy(duration, totalDamage));
     }
 
     public void ApplySlowEffect(float duration, float slowPercent) {
-        StartCoroutine(SlowEnemy(duration, slowPercent));
+		StartCoroutine(SlowEnemy(duration, slowPercent));
     }
 
     public void ApplyStunnedEffect(float duration){
-        StartCoroutine(StunEnemy(duration));
+		AudioManeger.Instance.PlaySFX("stun");
+		StartCoroutine(StunEnemy(duration));
     }
 
     private IEnumerator SlowEnemy(float duration, float slowPercent)
@@ -186,7 +204,7 @@ public class EnemyController : MonoBehaviour
             {
                 damageByTime = totalDamage * ((Time.deltaTime - (elapsedTime - duration)) / duration);
             }
-            takeDamage(damageByTime);
+			takeDamageFire(damageByTime);
             yield return null;
         }
         if (burnEffect != null)

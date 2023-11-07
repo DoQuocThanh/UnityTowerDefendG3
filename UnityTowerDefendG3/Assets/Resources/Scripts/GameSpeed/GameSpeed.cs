@@ -26,12 +26,12 @@ public class GameSpeed : MonoBehaviour
 	public void ChangeSpeed()
 	{
 		//as long as gameSpeed is not 4 allow us to increase level
-		if (gameSpeed < 4)
+		if (gameSpeed < 6)
 		{
 			gameSpeed++;
 		}
 		// if game speed reach to 4 with the next push button condition is false and give gameSpeed value 1
-		else if (gameSpeed == 4)
+		else if (gameSpeed == 6)
 		{
 			gameSpeed = 1;
 		}

@@ -194,10 +194,10 @@ MonoBehaviour:
   currentFirerateUpgrade: 0
   hasFirerateUpgrade: 1
   damageUpgrades:
+  - amount: 3
+    cost: 10
   - amount: 4
-    cost: 6
-  - amount: 8
-    cost: 9
+    cost: 20
   currentDamageUpgrade: 0
   hasDamageUpgrade: 1
 --- !u!50 &8777876684517021097

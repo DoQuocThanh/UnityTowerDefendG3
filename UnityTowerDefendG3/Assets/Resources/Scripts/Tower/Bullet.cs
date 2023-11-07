@@ -61,9 +61,11 @@ public class Bullet : MonoBehaviour
 		switch (this.gameObject.tag)
 		{
 			case "DanBang":
+				AudioManeger.Instance.PlaySFX("");
 				other.gameObject.GetComponent<EnemyController>().ApplySlowEffect(bulletSnowTime, bulletSnow);
 				break;
 			case "DanLua":
+				AudioManeger.Instance.PlaySFX("");
 				other.gameObject.GetComponent<EnemyController>().ApplyBurnEffect(bulletFireTime, damagePercentFire);
 				break;
 			default:
@@ -83,10 +85,14 @@ public class Bullet : MonoBehaviour
 			{
 				Vector3 boomPosition = enemy.gameObject.GetComponent<EnemyController>().transform.position;
 				DamageBoom(boomPosition);
+				AudioManeger.Instance.PlaySFX("bombExplode");
+
 			}
 			else
 			{
+				
 				EffectAndDmgEnemy(enemy);
+				AudioManeger.Instance.PlaySFX("gun");
 				enemy.gameObject.GetComponent<EnemyController>().takeDamage(bulletDamage);
 			}
 		}
