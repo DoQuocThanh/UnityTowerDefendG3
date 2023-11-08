@@ -64,26 +64,22 @@ public class Money : MonoBehaviour
         }
         else
         {
-          
-                textWarningTmp.gameObject.SetActive(true);
-                textWarningTmp.text = "Not enough gold";
-                // StartCoroutine(ShowWarningAndDelay());
-                Invoke("ShowWarningAndDelay", 2);
-       
-            
-           
-        }
+			textWarningTmp.gameObject.SetActive(true);
+			textWarningTmp.text = "Not enough gold";
+			// StartCoroutine(ShowWarningAndDelay());
+			Invoke("ShowWarningAndDelay", 2);
+		}
 
         return spent;
     }
 
-   /* private IEnumerator ShowWarningAndDelay()
-    {
-        yield return new WaitForSeconds(2.0f);
-        textWarningTmp.text = "";
-    }*/
-   private void ShowWarningAndDelay()
-    {
-        textWarningTmp.gameObject.SetActive(false);
-    }
+	/* private IEnumerator ShowWarningAndDelay()
+	 {
+		 yield return new WaitForSeconds(2.0f);
+		 textWarningTmp.text = "";
+	 }*/
+	private void ShowWarningAndDelay()
+	{
+		textWarningTmp.gameObject.SetActive(false);
+	}
 }

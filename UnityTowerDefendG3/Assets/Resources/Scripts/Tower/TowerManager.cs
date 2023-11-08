@@ -50,7 +50,6 @@ public class TowerManager : MonoBehaviour
 		towerInfo.transform.Find("Button - UpgradeFirerate").GetComponent<Button>().onClick.AddListener(() => UpgradeFirerate());
 		towerInfo.transform.Find("Button - UpgradeDamage").GetComponent<Button>().onClick.AddListener(() => UpgradeDamage());
 	}
-
 	// Update is called once per frame
 	void Update()
 	{
@@ -74,51 +73,51 @@ public class TowerManager : MonoBehaviour
 			}
 			else
 			{
+				
 				if (Physics2D.Raycast(indicator.position, Vector2.zero, 10f, whatIsObstacle))
 				{
 					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-
-
-					if (Input.GetMouseButtonDown(0))
+					
+						if (Input.GetMouseButtonDown(0))
 					{
-
+						if (Money.instance.currentMoney < towerItem.cost)
+						{
+							showMessage("Not have enough money");
+							return;
+						}
 						if (count >= totalLimit)
 						{
+								
 							textTotalLimit.color = Color.red;
 							showMessage("limited tower");
 							return;
 						}
 						count++;
-						if (Money.instance.SpendMoney(towerItem.cost))
-						{
-							
-							isPlacing = false;
-							Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
-							AudioManeger.Instance.PlaySFX("towerPlace");
-							GameObject meme = towerItem.towerPrefab.transform.Find("Circle").gameObject;
-							meme.GetComponentInChildren<SpriteRenderer>().enabled = false;
-							
-							for (int i = 0; i < placement.Length; i++)
+							if (Money.instance.SpendMoney(towerItem.cost)==true)
 							{
-								placement[i].gameObject.SetActive(false);
-								
-							}
-							indicator.gameObject.SetActive(false);
 							
-						}
-					} 
-					
+								isPlacing = false;
+								Instantiate(towerItem.towerPrefab, indicator.position, towerItem.towerPrefab.transform.rotation);
+								AudioManeger.Instance.PlaySFX("towerPlace");
+								GameObject meme = towerItem.towerPrefab.transform.Find("Circle").gameObject;
+								meme.GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+								for (int i = 0; i < placement.Length; i++)
+								{
+									placement[i].gameObject.SetActive(false);
+
+								}
+								indicator.gameObject.SetActive(false);
+
+							}
+					}
 				}
 				else
 				{
 					indicator.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 					
 				}
-				
 			}
-
-
-
 		}
 	}
 
@@ -132,7 +131,6 @@ public class TowerManager : MonoBehaviour
 		{
 			location = hit.point;
 		}
-
 		return location;
 	}
  
@@ -142,7 +140,6 @@ public class TowerManager : MonoBehaviour
 		AudioManeger.Instance.PlaySFX("btn_Click");
 
 		towerItem = towerBtn;
-		
 		
 		isPlacing = true;
 		Destroy(indicator.gameObject);

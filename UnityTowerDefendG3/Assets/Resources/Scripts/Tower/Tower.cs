@@ -106,20 +106,43 @@ public class Tower : MonoBehaviour
                 {
                     enemyController = eList[0];
                 }
+                else
+                {
+                    enemyController = null;
+				}
                 break;
             case Target.Last:
                 if (eList.Count > 0)
                 {
                     enemyController = eList[eList.Count - 1];
                 }
+                else
+                {
+					enemyController = null;
+				}
                 break;
             case Target.StrongestEnememies:
-                var desc = eList.OrderByDescending(o => o.GetComponent<EnemyController>().enemyHeath);
-                enemyController = desc.FirstOrDefault();
-                break;
+				if (eList.Count > 0)
+				{
+					var desc = eList.OrderByDescending(o => o.GetComponent<EnemyController>().enemyHeath);
+					enemyController = desc.FirstOrDefault();
+                }
+                else
+                {
+					enemyController = null;
+				}
+
+				break;
             case Target.WeakestEnememies:
-                var asc = eList.OrderBy(o => o.GetComponent<EnemyController>().enemyHeath);
-                enemyController = asc.FirstOrDefault();
+                if (eList.Count > 0)
+                {
+                    var asc = eList.OrderBy(o => o.GetComponent<EnemyController>().enemyHeath);
+                    enemyController = asc.FirstOrDefault();
+                }
+                else
+                {
+                    enemyController = null;
+                }
                 break;
         }
     }
